@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-// ignore: unnecessary_import
-import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
+part of '../pages.dart';
 
 class UpdatePass extends StatefulWidget {
   const UpdatePass({super.key});
@@ -30,7 +27,6 @@ class _UpdatePassState extends State<UpdatePass> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(

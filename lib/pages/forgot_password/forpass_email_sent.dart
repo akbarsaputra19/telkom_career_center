@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+part of '../pages.dart';
 
 class FpEmailSent extends StatefulWidget {
   const FpEmailSent({super.key});
@@ -12,7 +11,6 @@ class _FpEmailSentState extends State<FpEmailSent> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
