@@ -67,6 +67,9 @@ flutter:
     - assets/images/illus_email_sent.png
     - assets/images/illus_login.png
     - assets/images/illus_u_password.png
+    - assets/images/illus-apply-success.png
+    - assets/images/accenture.png
+    - assets/images/kompas.png
     - assets/images/image1.png
     - assets/images/image887.png
     - assets/icons/beranda.png

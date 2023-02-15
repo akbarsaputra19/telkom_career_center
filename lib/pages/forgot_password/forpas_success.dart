@@ -22,7 +22,7 @@ class _PasswordPageState extends State<PasswordPage> {
             height: 190,
               decoration: const BoxDecoration(
           image : DecorationImage(
-          image: AssetImage('assets/img/LogoOrang.png'),
+          image: AssetImage('assets/images/illus_login.png'),
           fit: BoxFit.fitWidth
               ))),
             Container(
@@ -44,7 +44,7 @@ class _PasswordPageState extends State<PasswordPage> {
                   child: Row(
                     children: const [
                        Icon(
-                        Icons.arrow_back_ios_rounded,
+                        Icons.chevron_left_rounded,
                         color: Color(0xffEA232A),
                       ),
                       Text(
@@ -61,7 +61,7 @@ class _PasswordPageState extends State<PasswordPage> {
                   ),
                   SizedBox(height: height * 0.07),
                   Center(
-                    child: Image.asset("assets/img/illus-update-password.png")),
+                    child: Image.asset("assets/images/illus_u_password.png")),
                   SizedBox(height: height * 0.05),
                   const Center(
                     child: Text(
