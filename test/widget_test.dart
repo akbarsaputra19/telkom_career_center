@@ -28,3 +28,50 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 }
+
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+// abstract class Hewan {
+//   properti atau params
+//   String? nama;
+//   int? berat;
+//   int? umur;
+
+//   Hewan({
+//     this.nama,
+//     this.berat,
+//     this.umur,
+//   });
+
+//   void makan(int banyak) {
+//     berat = berat! + banyak;
+//   }
+
+//   void pup(int banyak) {
+//     berat = berat! - banyak;
+//   }
+
+//   void tidur() {}
+// }
+
+// class Burung extends Hewan {
+//   String? warnabulu;
+//   int? jumlahparuh;
+//   Burung({
+//     this.warnabulu,
+//     this.jumlahparuh,
+//     String? namaburung,
+//     int? beratburung,
+//     int? umurburung
+//   }):super(nama: namaburung, berat: beratburung, umur: umurburung);
+// }
+
+
+// void  main() {
+//   var burung1 = Burung(
+//     beratburung: 5, jumlahparuh: 1, namaburung: "joni", umurburung: 5, warnabulu: "hijau");
+//     print(
+//       "${burung1.jumlahparuh}, ${burung1.warnabulu}, ${burung1.berat}, ${burung1.nama}, ${burung1.umur}");
+//     burung1.makan(10);
+//     print(
+//       "${burung1.jumlahparuh}, ${burung1.warnabulu}, ${burung1.berat}, ${burung1.nama}, ${burung1.umur}");
+// }

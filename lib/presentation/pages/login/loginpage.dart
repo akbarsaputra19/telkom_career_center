@@ -1,15 +1,14 @@
 part of '../pages.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterState extends State<Register> {
+class _LoginPageState extends State<LoginPage> {
   bool hidePassword = true;
-
   bool isAgree = false;
 
   void changePasswordVisibility() {
@@ -23,16 +22,20 @@ class _RegisterState extends State<Register> {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(color: Color(0xffC9C4E5)),
+        decoration: const BoxDecoration(
+          color: Color(0xffC9C4E5),
+        ),
         child: Stack(
           children: <Widget>[
             Container(
-                width: 460,
-                height: 175,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/illus_login.png'),
-                        fit: BoxFit.fitWidth))),
+              width: 460,
+              height: 175,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/illus_login.png'),
+                    fit: BoxFit.fitWidth),
+              ),
+            ),
             Container(
               margin: EdgeInsets.only(top: height * 0.16),
               decoration: const BoxDecoration(
@@ -56,33 +59,36 @@ class _RegisterState extends State<Register> {
                       child: Text(
                         "Talent & Career Center ",
                         style: TextStyle(
-                            fontFamily: "inter_semibold",
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xff262626)),
+                          fontFamily: "inter_semibold",
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff262626),
+                        ),
                       ),
                     ),
                   ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(16, 24, 16, 0),
                     child: const Text(
-                      "Daftar",
+                      "Masuk",
                       style: TextStyle(
-                          fontFamily: "inter_semibold",
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xff262626)),
+                        fontFamily: "inter_semibold",
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff262626),
+                      ),
                     ),
                   ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(16, 4, 16, 0),
                     child: const Text(
-                      "Daftarkan akun untuk menggunakan aplikasi ini.",
+                      "Masuk dengan akun yang pernah anda daftarkan.",
                       style: TextStyle(
-                          fontFamily: "inter_regular",
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff666666)),
+                        fontFamily: "inter_regular",
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff666666),
+                      ),
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -91,10 +97,11 @@ class _RegisterState extends State<Register> {
                     child: const Text(
                       "Email",
                       style: TextStyle(
-                          fontFamily: "inter_semibold",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xff333333)),
+                        fontFamily: "inter_semibold",
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff333333),
+                      ),
                     ),
                   ),
                   Container(
@@ -108,10 +115,7 @@ class _RegisterState extends State<Register> {
                       ),
                       decoration: InputDecoration(
                         focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xff333333),
-                          ),
-                        ),
+                            borderSide: BorderSide(color: Color(0xff333333))),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
                         ),
@@ -119,41 +123,6 @@ class _RegisterState extends State<Register> {
                       ),
                       textAlign: TextAlign.left,
                       keyboardType: TextInputType.emailAddress,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                    child: const Text(
-                      "Nama",
-                      style: TextStyle(
-                          fontFamily: "inter_semibold",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xff333333)),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(16, 4, 16, 0),
-                    child: TextField(
-                      style: const TextStyle(
-                        fontFamily: "inter_regular",
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff333333),
-                      ),
-                      decoration: InputDecoration(
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xff333333),
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        fillColor: const Color(0xff999999),
-                      ),
-                      textAlign: TextAlign.left,
-                      keyboardType: TextInputType.name,
                     ),
                   ),
                   Container(
@@ -207,13 +176,13 @@ class _RegisterState extends State<Register> {
                   Container(
                     margin: const EdgeInsets.fromLTRB(16, 24, 16, 0),
                     child: ElevatedButton(
-                      onPressed: () => context.go('/signup'),
+                      onPressed: () => context.go('/sudah'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xffEA232A),
                         padding: const EdgeInsets.fromLTRB(12, 24, 12, 24),
                       ),
                       child: const Text(
-                        "Daftar",
+                        "Masuk",
                         style: TextStyle(
                           fontFamily: "inter_bold",
                           fontSize: 14,
@@ -231,7 +200,7 @@ class _RegisterState extends State<Register> {
                         Container(
                           alignment: Alignment.topLeft,
                           child: const Text(
-                            "Sudah memiliki akun?",
+                            "Belum pernah mendaftar?",
                             style: TextStyle(
                               fontFamily: "inter_regular",
                               fontSize: 12,
@@ -243,9 +212,9 @@ class _RegisterState extends State<Register> {
                         Container(
                           margin: const EdgeInsets.fromLTRB(4, 0, 0, 0),
                           child: GestureDetector(
-                            onTap: () => context.go('/login'),
+                            onTap: () => context.go('/register'),
                             child: const Text(
-                              "Masuk Sekarang",
+                              "Daftar Sekarang",
                               style: TextStyle(
                                 fontFamily: "inter_semibold",
                                 fontSize: 12,
@@ -256,6 +225,22 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    child: GestureDetector(
+                      onTap: () => context.go('/forpass'),
+                      child: const Text(
+                        "Lupa Password",
+                        style: TextStyle(
+                          fontFamily: "inter_semibold",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xffEA232A),
+                        ),
+                      ),
                     ),
                   ),
                 ],

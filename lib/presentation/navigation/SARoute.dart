@@ -3,14 +3,14 @@ import '../pages/pages.dart';
 import 'Routes.dart';
 
 final GoRouter saRouter = GoRouter(initialLocation: "/sudah", routes: [
-  // GoRoute(
-  //     path: "/login",
-  //     name: Routes.loginPage,
-  //     builder: (context, state) => const LoginPage()),
+  GoRoute(
+      path: "/login",
+      name: Routes.loginPage,
+      builder: (context, state) => const LoginPage()),
   GoRoute(
       path: "/register",
       name: Routes.registerPage,
-      builder: (context, state) => const RegisterPage()),
+      builder: (context, state) => const Register()),
   GoRoute(
       path: "/detail",
       name: Routes.detailPage,
