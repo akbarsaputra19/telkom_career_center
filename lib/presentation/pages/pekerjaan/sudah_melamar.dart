@@ -51,6 +51,7 @@ class _SudahMelamarState extends State<SudahMelamar> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
+            color: Colors.grey[100],
             margin: const EdgeInsets.only(top: 16),
             child: Column(
               children: [

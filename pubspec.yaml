@@ -43,6 +43,7 @@ dependencies:
   json_annotation: ^4.8.0
   json_serializable: ^6.6.1
   shared_preferences: ^2.0.18
+  top_snackbar_flutter: ^2.1.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -65,14 +66,23 @@ flutter:
     - assets/images/illus_login.png
     - assets/images/illus_u_password.png
     - assets/images/illus-apply-success.png
+    - assets/images/illus-cv-resume.png
+    - assets/images/illus-portfolio.png
+    - assets/images/illus-search-null.png
+    - assets/images/image_888.png
     - assets/images/accenture.png
     - assets/images/kompas.png
     - assets/images/image1.png
     - assets/images/image887.png
     - assets/icons/beranda.png
     - assets/icons/notif.png
+    - assets/icons/toggle-on.png
+    - assets/icons/toggle-off.png
+    - assets/icons/more.png
+    - assets/icons/chevron-down.png
     - assets/icons/pekerjaan.png
     - assets/icons/pesan.png
+    - assets/icons/calendar.png
     - assets/icons/profil.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
