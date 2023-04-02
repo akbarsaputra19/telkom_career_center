@@ -14,22 +14,17 @@ class _InputEducationState extends State<InputEducation> {
   final TextEditingController _universityInstitution = TextEditingController();
   final TextEditingController _major = TextEditingController();
   final TextEditingController _currentlyEducation = TextEditingController();
-  final TextEditingController _dateSelected = TextEditingController();
+  final TextEditingController _dateSelectedStart = TextEditingController();
+  final TextEditingController _dateSelectedFinished = TextEditingController();
   final TextEditingController _additionalInformation = TextEditingController();
 
   Image iconCurrentlyEducation() {
     if (_isEducation) {
-      _currentlyEducation.text = "Ya";
-      setState(() {
-        _isEducation = false;
-      });
-      return Image.asset("assets/icons/toggle-on.png");
-    } else {
       _currentlyEducation.text = "Tidak";
-      setState(() {
-        _isEducation = true;
-      });
       return Image.asset("assets/icons/toggle-off.png");
+    } else {
+      _currentlyEducation.text = "Ya";
+      return Image.asset("assets/icons/toggle-on.png");
     }
   }
 
@@ -327,6 +322,7 @@ class _InputEducationState extends State<InputEducation> {
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
                       controller: _currentlyEducation,
+                      readOnly: true,
                       style: const TextStyle(
                         fontFamily: "inter_regular",
                         fontSize: 12,
@@ -369,7 +365,8 @@ class _InputEducationState extends State<InputEducation> {
                     margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
-                      controller: _dateSelected,
+                      controller: _dateSelectedStart,
+                      readOnly: true,
                       style: const TextStyle(
                         fontFamily: "inter_regular",
                         fontSize: 12,
@@ -378,10 +375,21 @@ class _InputEducationState extends State<InputEducation> {
                       ),
                       decoration: InputDecoration(
                         hintText: "DD/MM/YYYY",
-                        // suffixIcon: IconButton(
-                        //   onPressed: ,
-                        //   icon: 
-                        // ),
+                        suffixIcon: IconButton(
+                          onPressed: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(1945),
+                              lastDate: DateTime(2100)
+                              );
+                              if (pickedDate != null) {
+                                String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
+                                _dateSelectedStart.text = dateFormat;
+                              }
+                            },
+                          icon: Image.asset("assets/icons/calendar.png")
+                        ),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xff666666),
@@ -395,52 +403,68 @@ class _InputEducationState extends State<InputEducation> {
                       )
                     )
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 16),
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.only(left: 16),
-                    child: const Text(
-                      "Selesai Pendidikan",
-                      style: TextStyle(
-                        fontFamily: "inter_semibold",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xff333333)
-                      )
-                    )
-                  ),
                   Visibility(
                     visible: (_isEducation ? true : false),
-                    child: Container(
-                      margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
-                      child: TextFormField(
-                        cursorColor: const Color(0xff333333),
-                        controller: _dateSelected,
-                        style: const TextStyle(
-                          fontFamily: "inter_regular",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff333333),
-                        ),
-                        decoration: InputDecoration(
-                          hintText: "DD/MM/YYYY",
-                          // suffixIcon: IconButton(
-                          //   onPressed: ,
-                          //   icon: 
-                          // ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xff666666),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.only(top: 16),
+                          alignment: Alignment.topLeft,
+                          padding: const EdgeInsets.only(left: 16),
+                          child: const Text(
+                            "Selesai Pendidikan",
+                            style: TextStyle(
+                                fontFamily: "inter_semibold",
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xff333333)
                             )
-                          ),
-                          border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          ),
-                          fillColor: const Color(0xffFFFFFF),
-                          filled: true,
+                          )
                         ),
-                      ),
-                    ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
+                          child: TextFormField(
+                            cursorColor: const Color(0xff333333),
+                            controller: _dateSelectedFinished,
+                            readOnly: true,
+                            style: const TextStyle(
+                              fontFamily: "inter_regular",
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff333333),
+                            ),
+                            decoration: InputDecoration(
+                              hintText: "DD/MM/YYYY",
+                              suffixIcon: IconButton(
+                                onPressed: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1945),
+                                    lastDate: DateTime(2100)
+                                  );
+                                  if (pickedDate != null) {
+                                  String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
+                                  _dateSelectedFinished.text = dateFormat;
+                                  }
+                                },
+                                icon: Image.asset("assets/icons/calendar.png")
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xff666666),
+                                )
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              fillColor: const Color(0xffFFFFFF),
+                              filled: true,
+                            ),
+                          ),
+                        )
+                      ]
+                    )
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 16),
@@ -456,33 +480,38 @@ class _InputEducationState extends State<InputEducation> {
                       )
                     )
                   ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
-                    child: TextFormField(
-                      cursorColor: const Color(0xff333333),
-                      controller: _additionalInformation,
-                      style: const TextStyle(
-                        fontFamily: "inter_regular",
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff333333),
-                      ),
-                      decoration: InputDecoration(
-                        hintText: "Informasi Tambahan",
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xff666666),
-                          )
+                  SizedBox(
+                    height: 80,
+                    child: Container(
+                      margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
+                      child: TextFormField(
+                        cursorColor: const Color(0xff333333),
+                        controller: _additionalInformation,
+                        maxLines: null,
+                        expands: true,
+                        style: const TextStyle(
+                          fontFamily: "inter_regular",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff333333),
                         ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
+                        decoration: InputDecoration(
+                          hintText: "Informasi Tambahan",
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xff666666),
+                            )
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          fillColor: const Color(0xffFFFFFF),
+                          filled: true,
                         ),
-                        fillColor: const Color(0xffFFFFFF),
-                        filled: true,
-                      ),
-                      textAlign: TextAlign.left,
-                      keyboardType: TextInputType.text,
-                    )
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.multiline,
+                      )
+                    ),
                   ),
                 ],
               ),

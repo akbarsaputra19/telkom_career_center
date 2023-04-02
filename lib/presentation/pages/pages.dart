@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:telkom_career/data/repository/login/login_repository_impl.dart';
 import 'package:telkom_career/presentation/pages/login/cubit/login_cubit.dart';
 import 'package:telkom_career/utilities/common.dart';
