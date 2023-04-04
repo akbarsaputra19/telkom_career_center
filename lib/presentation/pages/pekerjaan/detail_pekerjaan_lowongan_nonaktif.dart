@@ -45,23 +45,19 @@ class _NonaktifState extends State<Nonaktif> {
                       fontWeight: FontWeight.w600,
                       color: Color(0xff333333)
                     )
-                    )
-                ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: const Text(
-                          "Accenture Southeast Asia",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400
-                          )
-                          )
-                      )
-                    ],
                   )
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "Accenture Southeast Asia",
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400
+                      )
+                    )
+                  ],
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8),
@@ -73,7 +69,7 @@ class _NonaktifState extends State<Nonaktif> {
                       fontWeight: FontWeight.w600,
                       color: Color(0xff333333)
                     )
-                    )
+                  )
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8),
@@ -83,21 +79,19 @@ class _NonaktifState extends State<Nonaktif> {
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
                     )
-                    )
+                  )
                 ),
-                Container(
-                  child: TextButton(
-                    onPressed: () => context.go('/detail'), 
-                    child: const Text(
-                      "Lihat Pelamar",
+                TextButton(
+                  onPressed: () => context.go('/detail'), 
+                  child: const Text(
+                    "Lihat Pelamar",
                     style: TextStyle(
                       fontFamily: 'inter_semibold',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Color(0xffEA232A)
                     )
-                    )
-                    )
+                  )
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 16, top: 25),
@@ -110,7 +104,7 @@ class _NonaktifState extends State<Nonaktif> {
                       fontWeight: FontWeight.w600,
                       color: Color(0xff333333),
                     )
-                    )
+                  )
                 ),
                 Container(
                   alignment: Alignment.topLeft,
@@ -127,7 +121,7 @@ class _NonaktifState extends State<Nonaktif> {
                       fontWeight: FontWeight.w600,
                       color: Color(0xff333333),
                     )
-                    )
+                  )
                 ),
                 Container(
                   alignment: Alignment.topLeft,
@@ -153,8 +147,7 @@ class _NonaktifState extends State<Nonaktif> {
                           "assets/images/image_888.png",
                         fit: BoxFit.cover),
                       ),
-                      Container(
-                      child: Column(
+                      Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                       Text(
@@ -172,10 +165,9 @@ class _NonaktifState extends State<Nonaktif> {
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Color(0xff333333)
-                              )
                             )
-                          ]
-                        ),
+                          )
+                        ]
                       )
                     ]
                   )

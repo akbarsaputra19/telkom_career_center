@@ -70,21 +70,17 @@ class _SudahMelamarState extends State<SudahMelamar> {
                     )
                     )
                 ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: const Text(
-                          "KOMPAS GRAMEDIA",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400
-                          )
-                          )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "KOMPAS GRAMEDIA",
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400
                       )
-                    ],
-                  )
+                      )
+                  ],
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8),
@@ -161,8 +157,7 @@ class _SudahMelamarState extends State<SudahMelamar> {
                         child: Image.asset("assets/images/kompas.png",
                         fit: BoxFit.cover),
                       ),
-                      Container(
-                      child: Column(
+                      Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                       Text("Kompas Gramedia",
@@ -181,8 +176,7 @@ class _SudahMelamarState extends State<SudahMelamar> {
                               )
                             )
                           ]
-                        ),
-                      )
+                        )
                     ]
                   )
                 ),

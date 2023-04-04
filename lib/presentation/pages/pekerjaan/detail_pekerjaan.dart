@@ -70,21 +70,17 @@ class _DetailPekerjaanState extends State<DetailPekerjaan> {
                     )
                     )
                 ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: const Text(
-                          "Accenture Southeast Asia",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400
-                          )
-                          )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "Accenture Southeast Asia",
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400
                       )
-                    ],
-                  )
+                      )
+                  ],
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8),
@@ -161,8 +157,7 @@ class _DetailPekerjaanState extends State<DetailPekerjaan> {
                         child: Image.asset("assets/images/accenture.png",
                         fit: BoxFit.cover),
                       ),
-                      Container(
-                      child: Column(
+                      Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                       Text("Accenture Southeast Asia",
@@ -182,7 +177,6 @@ class _DetailPekerjaanState extends State<DetailPekerjaan> {
                             )
                           ]
                         )
-                      )
                     ]
                   )
                 ),
