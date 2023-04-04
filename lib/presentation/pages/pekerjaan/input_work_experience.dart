@@ -15,15 +15,15 @@ class _WorkExperienceState extends State<WorkExperience> {
   final TextEditingController _currentlyWork = TextEditingController();
   final TextEditingController _dateSelectedStart = TextEditingController();
   final TextEditingController _dateSelectedFinished = TextEditingController();
-  final TextEditingController _additionalInformation = TextEditingController();
+  final TextEditingController _workerDescription = TextEditingController();
 
   Image iconCurrentlyWork() {
     if (_isWorking) {
-      _currentlyWork.text = "Ya";
-      return Image.asset("assets/icons/toggle-on.png");
-    } else {
       _currentlyWork.text = "Tidak";
       return Image.asset("assets/icons/toggle-off.png");
+    } else {
+      _currentlyWork.text = "Ya";
+      return Image.asset("assets/icons/toggle-on.png");
     }
   }
 
@@ -251,7 +251,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                           alignment: Alignment.topLeft,
                           padding: const EdgeInsets.only(left: 16),
                           child: const Text(
-                            "Selesai Pendidikan",
+                            "Selesai Bekerja",
                             style: TextStyle(
                                 fontFamily: "inter_semibold",
                                 fontSize: 12,
@@ -310,7 +310,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                     alignment: Alignment.topLeft,
                     padding: const EdgeInsets.only(left: 16),
                     child: const Text(
-                      "Informasi Tambahan",
+                      "Deskripsi Pekerjaan",
                       style: TextStyle(
                         fontFamily: "inter_semibold",
                           fontSize: 12,
@@ -319,45 +319,61 @@ class _WorkExperienceState extends State<WorkExperience> {
                       )
                     )
                   ),
-                  SizedBox(
-                    height: 72,
-                    child: Container(
-                      margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
-                      child: TextFormField(
-                        cursorColor: const Color(0xff333333),
-                        controller: _additionalInformation,
-                        maxLines: null,
-                        expands: true,
-                        style: const TextStyle(
-                          fontFamily: "inter_regular",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff333333),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
+                    child: TextFormField(
+                      cursorColor: const Color(0xff333333),
+                      controller: _workerDescription,
+                      maxLines: 7,
+                      minLines: 6,
+                      style: const TextStyle(
+                        fontFamily: "inter_regular",
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff333333),
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Deskripsi Pekerjaan",
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xff666666),
+                          )
                         ),
-                        decoration: InputDecoration(
-                          hintText: "Informasi Tambahan",
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xff666666),
-                            )
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          fillColor: const Color(0xffFFFFFF),
-                          filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
                         ),
+                        fillColor: const Color(0xffFFFFFF),
+                        filled: true,
+                      ),
                         textAlign: TextAlign.left,
                         keyboardType: TextInputType.multiline,
                       )
                     ),
-                  ),
-                ],
-              ),
-            )
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(16, 120, 15, 21),
+                      child: ElevatedButton(
+                        onPressed: () => context.go('/education'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffEA232A),
+                          padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),
+                        ),
+                        child: const Text(
+                          "Simpan",
+                          style: TextStyle(
+                            fontFamily: "inter_bold",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xffFFFFFF),
+                          ),
+                        )
+                      )
+                    )
+                  ],
+                ),
+              )
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
-}

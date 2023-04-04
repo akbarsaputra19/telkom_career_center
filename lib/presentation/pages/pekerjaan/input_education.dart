@@ -480,45 +480,61 @@ class _InputEducationState extends State<InputEducation> {
                       )
                     )
                   ),
-                  SizedBox(
-                    height: 80,
-                    child: Container(
-                      margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
-                      child: TextFormField(
-                        cursorColor: const Color(0xff333333),
-                        controller: _additionalInformation,
-                        maxLines: null,
-                        expands: true,
-                        style: const TextStyle(
-                          fontFamily: "inter_regular",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff333333),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
+                    child: TextFormField(
+                      cursorColor: const Color(0xff333333),
+                      controller: _additionalInformation,
+                      maxLines: 7,
+                      minLines: 6,
+                      style: const TextStyle(
+                        fontFamily: "inter_regular",
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff333333),
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Informasi Tambahan",
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xff666666),
+                          )
                         ),
-                        decoration: InputDecoration(
-                          hintText: "Informasi Tambahan",
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xff666666),
-                            )
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          fillColor: const Color(0xffFFFFFF),
-                          filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
                         ),
-                        textAlign: TextAlign.start,
+                        fillColor: const Color(0xffFFFFFF),
+                        filled: true,
+                      ),
+                        textAlign: TextAlign.left,
                         keyboardType: TextInputType.multiline,
                       )
                     ),
-                  ),
-                ],
-              ),
-            )
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(16, 100, 15, 21),
+                      child: ElevatedButton(
+                        onPressed: () => context.go('/experience'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffEA232A),
+                          padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),
+                        ),
+                        child: const Text(
+                          "Simpan",
+                          style: TextStyle(
+                            fontFamily: "inter_bold",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xffFFFFFF),
+                          ),
+                        )
+                      )
+                    )
+                  ],
+                ),
+              )
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
-}
