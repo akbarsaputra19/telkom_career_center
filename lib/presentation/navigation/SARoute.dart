@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import '../pages/pages.dart';
 import 'Routes.dart';
 
-final GoRouter saRouter = GoRouter(initialLocation: "/education", routes: [
+final GoRouter saRouter = GoRouter(initialLocation: "/detail", routes: [
   GoRoute(
       path: "/login",
       name: Routes.loginPage,

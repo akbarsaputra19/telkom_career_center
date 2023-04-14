@@ -8,6 +8,8 @@ class InputPortfolio extends StatefulWidget {
 }
 
 class _InputPortfolioState extends State<InputPortfolio> {
+  String fileName = '';
+  String pathFile = '';
 
   void showMoreUpload() {
     showModalBottomSheet(
@@ -30,7 +32,21 @@ class _InputPortfolioState extends State<InputPortfolio> {
               Container(
                 padding: const EdgeInsets.fromLTRB(16, 12, 15, 12),
                 child: TextButton(
-                  onPressed: () => context.go('/sudah'), 
+                  onPressed: () async {
+                    FilePickerResult? result = await FilePicker.platform
+                      .pickFiles(allowedExtensions: ["pdf"], type: FileType.custom);
+
+                    if (result != null) {
+                      IO.File file = IO.File(result.files.single.path!);
+                      PlatformFile platformFile = result.files.first;
+                      setState(() {
+                        pathFile = platformFile.path!;
+                        fileName = "${platformFile.name}.${platformFile.extension}";
+                      });
+                    } else {
+                      //User canceled the picker
+                    }
+                  }, 
                   child: const Text(
                     "Penyimpanan handphone",
                     style: TextStyle(
@@ -231,8 +247,8 @@ class _InputPortfolioState extends State<InputPortfolio> {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           "Portfolio terunggah",
                           style: TextStyle(
                             fontFamily: "inter_semibold",
@@ -242,8 +258,8 @@ class _InputPortfolioState extends State<InputPortfolio> {
                           )
                         ),
                         Text(
-                          "Portfolio Bima Agustian Wanaputra.pdf",
-                          style: TextStyle(
+                          "Portfolio $fileName",
+                          style: const TextStyle(
                             fontFamily: "Regular",
                             fontSize: 10,
                             fontWeight: FontWeight.w400,

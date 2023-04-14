@@ -1,36 +1,151 @@
-part of '../pages.dart';
+part of '../../pages.dart';
 
-class WorkExperience extends StatefulWidget {
-  const WorkExperience({super.key});
+class InputEducation extends StatefulWidget {
+  const InputEducation({super.key});
 
   @override
-  State<WorkExperience> createState() => _WorkExperienceState();
+  State<InputEducation> createState() => _InputEducationState();
 }
 
-class _WorkExperienceState extends State<WorkExperience> {
-  bool _isWorking = false;
+class _InputEducationState extends State<InputEducation> {
+  bool _isEducation = false;
 
-  final TextEditingController _position = TextEditingController();
-  final TextEditingController _companyName = TextEditingController();
-  final TextEditingController _currentlyWork = TextEditingController();
+  final TextEditingController _level = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _major = TextEditingController();
+  final TextEditingController _currentlyEducation = TextEditingController();
   final TextEditingController _dateSelectedStart = TextEditingController();
   final TextEditingController _dateSelectedFinished = TextEditingController();
-  final TextEditingController _workerDescription = TextEditingController();
+  final TextEditingController _additionalInformation = TextEditingController();
 
-  Image iconCurrentlyWork() {
-    if (_isWorking) {
-      _currentlyWork.text = "Tidak";
+  Image iconCurrentlyEducation() {
+    if (_isEducation) {
+      _currentlyEducation.text = "Tidak";
       return Image.asset("assets/icons/toggle-off.png");
     } else {
-      _currentlyWork.text = "Ya";
+      _currentlyEducation.text = "Ya";
       return Image.asset("assets/icons/toggle-on.png");
     }
   }
 
-  void currentlyWorkOnClick() {
+  void currentlyEducationOnClick() {
     setState(() {
-      _isWorking = !_isWorking;
+      _isEducation = !_isEducation;
     });
+  }
+
+  void showMoreStage() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.3,
+        maxChildSize: 0.4,
+        minChildSize: 0.17,
+        expand: false,
+        builder: (context, scrollController) {
+          return SingleChildScrollView(
+            controller: scrollController,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 18, top: 28),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _level.text = "SMA/SMK";
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "SMA/SMK",
+                          style: TextStyle(
+                          fontFamily: "inter_semibold",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff333333)
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _level.text = "D3";
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "D3",
+                          style: TextStyle(
+                          fontFamily: "inter_semibold",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff333333)
+                          ),
+                        ),
+                      )
+                    ]
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _level.text = "S1";
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "S1",
+                          style: TextStyle(
+                          fontFamily: "inter_semibold",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff333333)
+                          ),
+                        ),
+                      )
+                    ]
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _level.text = "S2";
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "S2",
+                          style: TextStyle(
+                          fontFamily: "inter_semibold",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff333333)
+                          ),
+                        ),
+                      )
+                    ]
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      )
+    );
   }
 
   @override
@@ -42,9 +157,11 @@ class _WorkExperienceState extends State<WorkExperience> {
           backgroundColor: const Color(0xffFFFFFF),
           centerTitle: true,
           elevation: 0.5,
-          leading: const Icon(Icons.arrow_back_ios_rounded, color: Color(0xff333333)
+          leading: const Icon(
+            Icons.arrow_back_ios_rounded,
+            color: Color(0xff333333)
           ),
-          title: const Text('Pengalaman Kerja'),
+          title: const Text('Pendidikan'),
           titleTextStyle: const TextStyle(
             fontFamily: 'inter_semibold',
             fontSize: 14,
@@ -57,15 +174,15 @@ class _WorkExperienceState extends State<WorkExperience> {
             child: Container(
               color: Colors.grey[100],
               child: Column(
-                children: <Widget>[
+                children: <Widget> [
                   Container(
                     margin: const EdgeInsets.only(top: 16),
                     alignment: Alignment.topLeft,
                     padding: const EdgeInsets.only(left: 16),
                     child: const Text(
-                      "Jabatan",
+                      "Jenjang",
                       style: TextStyle(
-                          fontFamily: "inter_semibold",
+                        fontFamily: "inter_semibold",
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: Color(0xff333333)
@@ -76,49 +193,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                     margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
-                      controller: _position,
-                      style: const TextStyle(
-                        fontFamily: "inter_regular",
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff333333)
-                      ),
-                      decoration: InputDecoration(
-                        hintText: "Jabatan",
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xff333333)
-                          )
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4)
-                        ),
-                        fillColor: const Color(0xffFFFFFF),
-                        filled: true
-                      ),
-                      textAlign: TextAlign.left,
-                      keyboardType: TextInputType.text,
-                    )
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 16),
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.only(left: 16),
-                    child: const Text(
-                      "Nama Perusahaan",
-                      style: TextStyle(
-                          fontFamily: "inter_semibold",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xff333333)
-                      )
-                    )
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
-                    child: TextFormField(
-                      cursorColor: const Color(0xff333333),
-                      controller: _companyName,
+                      controller: _level,
                       style: const TextStyle(
                         fontFamily: "inter_regular",
                         fontSize: 12,
@@ -126,7 +201,51 @@ class _WorkExperienceState extends State<WorkExperience> {
                         color: Color(0xff333333),
                       ),
                       decoration: InputDecoration(
-                        hintText: "Nama Perusahaan",
+                        hintText: "Jenjang",
+                        suffixIcon: IconButton(
+                          onPressed: showMoreStage,
+                          icon: Image.asset("assets/icons/chevron-down.png")
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xff666666),
+                          )
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        fillColor: const Color(0xffFFFFFF),
+                        filled: true,
+                      )
+                    )
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16),
+                    alignment: Alignment.topLeft,
+                    padding: const EdgeInsets.only(left: 16),
+                    child: const Text(
+                      "Nama Universitas/Institusi",
+                      style: TextStyle(
+                        fontFamily: "inter_semibold",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff333333)
+                      )
+                    )
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
+                    child: TextFormField(
+                      cursorColor: const Color(0xff333333),
+                      controller: _name,
+                      style: const TextStyle(
+                        fontFamily: "inter_regular",
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff333333),
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Nama Universitas/Institusi",
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xff666666),
@@ -147,9 +266,9 @@ class _WorkExperienceState extends State<WorkExperience> {
                     alignment: Alignment.topLeft,
                     padding: const EdgeInsets.only(left: 16),
                     child: const Text(
-                      "Masih Berkerja",
+                      "Jurusan",
                       style: TextStyle(
-                          fontFamily: "inter_semibold",
+                        fontFamily: "inter_semibold",
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: Color(0xff333333)
@@ -160,7 +279,49 @@ class _WorkExperienceState extends State<WorkExperience> {
                     margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
-                      controller: _currentlyWork,
+                      controller: _major,
+                      style: const TextStyle(
+                        fontFamily: "inter_regular",
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff333333),
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Jurusan",
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xff666666),
+                          )
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        fillColor: const Color(0xffFFFFFF),
+                        filled: true,
+                      ),
+                      textAlign: TextAlign.left,
+                      keyboardType: TextInputType.text,
+                    )
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16),
+                    alignment: Alignment.topLeft,
+                    padding: const EdgeInsets.only(left: 16),
+                    child: const Text(
+                      "Masih Dalam Pendidikan",
+                      style: TextStyle(
+                        fontFamily: "inter_semibold",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff333333)
+                      )
+                    )
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
+                    child: TextFormField(
+                      cursorColor: const Color(0xff333333),
+                      controller: _currentlyEducation,
                       readOnly: true,
                       style: const TextStyle(
                         fontFamily: "inter_regular",
@@ -170,8 +331,8 @@ class _WorkExperienceState extends State<WorkExperience> {
                       ),
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
-                          onPressed: currentlyWorkOnClick,
-                          icon: iconCurrentlyWork()
+                          onPressed: currentlyEducationOnClick,
+                          icon: iconCurrentlyEducation()
                         ),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
@@ -191,9 +352,9 @@ class _WorkExperienceState extends State<WorkExperience> {
                     alignment: Alignment.topLeft,
                     padding: const EdgeInsets.only(left: 16),
                     child: const Text(
-                      "Mulai Berkerja",
+                      "Mulai Pendidikan",
                       style: TextStyle(
-                          fontFamily: "inter_semibold",
+                        fontFamily: "inter_semibold",
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: Color(0xff333333)
@@ -221,12 +382,12 @@ class _WorkExperienceState extends State<WorkExperience> {
                               initialDate: DateTime.now(),
                               firstDate: DateTime(1945),
                               lastDate: DateTime(2100)
-                            );
-                            if (pickedDate != null) {
+                              );
+                              if (pickedDate != null) {
                                 String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
                                 _dateSelectedStart.text = dateFormat;
-                            }
-                          },
+                              }
+                            },
                           icon: Image.asset("assets/icons/calendar.png")
                         ),
                         focusedBorder: const OutlineInputBorder(
@@ -243,7 +404,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                     )
                   ),
                   Visibility(
-                    visible: (_isWorking ? true : false),
+                    visible: (_isEducation ? true : false),
                     child: Column(
                       children: <Widget>[
                         Container(
@@ -251,7 +412,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                           alignment: Alignment.topLeft,
                           padding: const EdgeInsets.only(left: 16),
                           child: const Text(
-                            "Selesai Bekerja",
+                            "Selesai Pendidikan",
                             style: TextStyle(
                                 fontFamily: "inter_semibold",
                                 fontSize: 12,
@@ -310,7 +471,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                     alignment: Alignment.topLeft,
                     padding: const EdgeInsets.only(left: 16),
                     child: const Text(
-                      "Deskripsi Pekerjaan",
+                      "Informasi Tambahan",
                       style: TextStyle(
                         fontFamily: "inter_semibold",
                           fontSize: 12,
@@ -323,9 +484,9 @@ class _WorkExperienceState extends State<WorkExperience> {
                     margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
-                      controller: _workerDescription,
+                      controller: _additionalInformation,
                       maxLines: 7,
-                      minLines: 6,
+                      minLines: 5,
                       style: const TextStyle(
                         fontFamily: "inter_regular",
                         fontSize: 12,
@@ -333,7 +494,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                         color: Color(0xff333333),
                       ),
                       decoration: InputDecoration(
-                        hintText: "Deskripsi Pekerjaan",
+                        hintText: "Informasi Tambahan",
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xff666666),
@@ -349,24 +510,37 @@ class _WorkExperienceState extends State<WorkExperience> {
                         keyboardType: TextInputType.multiline,
                       )
                     ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(16, 120, 15, 21),
-                      child: ElevatedButton(
-                        onPressed: () => context.go('/education'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffEA232A),
-                          padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),
-                        ),
-                        child: const Text(
-                          "Simpan",
-                          style: TextStyle(
-                            fontFamily: "inter_bold",
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xffFFFFFF),
+                    GestureDetector(
+                      onTap: () {
+                        BlocProvider.of<EducationCubit>(context).onUpdateEducation(
+                          _level.text,
+                          _name.text,
+                          _major.text,
+                          _currentlyEducation.text,
+                          _dateSelectedStart.text,
+                          _dateSelectedFinished.text,
+                          _additionalInformation.text
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(16, 100, 15, 21),
+                        child: ElevatedButton(
+                          onPressed: () => context.go('/experience'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xffEA232A),
+                            padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),
                           ),
+                          child: const Text(
+                            "Simpan",
+                            style: TextStyle(
+                              fontFamily: "inter_bold",
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xffFFFFFF),
+                            ),
+                          )
                         )
-                      )
+                      ),
                     )
                   ],
                 ),

@@ -8,6 +8,9 @@ class InputResume extends StatefulWidget {
 }
 
 class _InputResumeState extends State<InputResume> {
+  String fileName = '';
+  String pathFile = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +96,21 @@ class _InputResumeState extends State<InputResume> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(16, 12, 15, 12),
                           child: TextButton(
-                            onPressed: () => context.go('/sudah'),
+                            onPressed: () async {
+                              FilePickerResult? result = await FilePicker.platform
+                                .pickFiles(allowedExtensions: ["pdf"], type: FileType.custom);
+
+                              if (result != null) {
+                                IO.File file = IO.File(result.files.single.path!);
+                                PlatformFile platformFile = result.files.first;
+                                setState(() {
+                                  pathFile = platformFile.path!;
+                                  fileName = "${platformFile.name}.${platformFile.extension}";
+                                });
+                              } else {
+
+                              }
+                            },
                             child: const Text(
                               "Penyimpanan handphone",
                               style: TextStyle(
@@ -167,8 +184,8 @@ class _InputResumeState extends State<InputResume> {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           "CV/Resume terunggah",
                           style: TextStyle(
                             fontFamily: "inter_semibold",
@@ -178,8 +195,8 @@ class _InputResumeState extends State<InputResume> {
                           )
                         ),
                         Text(
-                          "Resume Bima Agustian Wanaputra.pdf",
-                          style: TextStyle(
+                          " $fileName",
+                          style: const TextStyle(
                             fontFamily: "Regular",
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
@@ -261,7 +278,7 @@ class _InputResumeState extends State<InputResume> {
               Container(
                 margin: const EdgeInsets.fromLTRB(16, 190, 15, 21),
                 child: ElevatedButton(
-                  onPressed: () => context.go('/sudah'),
+                  onPressed: () => context.go('/portfolio'),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xffEA232A),
                       padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),

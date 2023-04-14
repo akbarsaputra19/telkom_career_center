@@ -1,3 +1,5 @@
+import 'dart:io' as IO;
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -5,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:telkom_career/data/repository/login/login_repository_impl.dart';
 import 'package:telkom_career/presentation/pages/login/cubit/login_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/education/cubit/education_cubit.dart';
 import 'package:telkom_career/utilities/common.dart';
 
 part 'register/register.dart';
@@ -18,5 +21,5 @@ part 'pekerjaan/detail_pekerjaan_lowongan_nonaktif.dart';
 part 'pekerjaan/detail_pekerjaan_lowongan_aktif.dart';
 part 'pekerjaan/input_cvresume.dart';
 part 'pekerjaan/input_portfolio.dart';
-part 'pekerjaan/input_work_experience.dart';
-part 'pekerjaan/input_education.dart';
+part 'profile/work_experience/input_work_experience.dart';
+part 'profile/education/input_education.dart';
