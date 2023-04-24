@@ -5,6 +5,9 @@ abstract class BaseConfig {
   //Login
   static const String LOGIN_CC = "/login";
 
+  //Register
+  static const String REGISTER_CC = "/register";
+
   //Education
   static const String ADD_EDUCATION = "/profile/1/add-education";
   static const String UPDATE_EDUCATION = "/profile/1/update-education";

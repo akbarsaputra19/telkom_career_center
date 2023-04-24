@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'register_bloc.dart';
+part of 'register_cubit.dart';
 
 abstract class RegisterState extends Equatable {
   const RegisterState();
-  
+
   @override
   List<Object> get props => [];
 }
@@ -13,9 +13,9 @@ class RegisterInitial extends RegisterState {}
 class RegisterIsLoading extends RegisterState {}
 
 class RegisterIsSuccess extends RegisterState {
-  final UserRegisterData data;
-  const RegisterIsSuccess({
-    required this.data,
+  String? data;
+  RegisterIsSuccess({
+    this.data,
   });
 }
 

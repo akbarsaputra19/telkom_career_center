@@ -6,8 +6,12 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:telkom_career/data/repository/login/login_repository_impl.dart';
+import 'package:telkom_career/data/repository/register/register_repository_impl.dart';
+import 'package:telkom_career/domain/model/request/work_experience/add_work_experience_request.dart';
 import 'package:telkom_career/presentation/pages/login/cubit/login_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/education/cubit/education_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/work_experience/cubit/add_work_experience_cubit.dart';
+import 'package:telkom_career/presentation/pages/register/cubit/register_cubit.dart';
 import 'package:telkom_career/utilities/common.dart';
 
 part 'register/register.dart';

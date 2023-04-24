@@ -352,7 +352,18 @@ class _WorkExperienceState extends State<WorkExperience> {
                     Container(
                       margin: const EdgeInsets.fromLTRB(16, 120, 15, 21),
                       child: ElevatedButton(
-                        onPressed: () => context.go('/education'),
+                        onPressed: () {
+                          BlocProvider.of<AddWorkExperienceCubit>(context).addWorkExperience(
+                            AddWorkExperienceRequest(
+                              skillExperience: _position.text,
+                              name: _companyName.text,
+                              stillWorking: _currentlyWork.text,
+                              startWork: _dateSelectedStart.text,
+                              endWork: _dateSelectedFinished.text,
+                              description: _workerDescription.text
+                            )
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xffEA232A),
                           padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),
