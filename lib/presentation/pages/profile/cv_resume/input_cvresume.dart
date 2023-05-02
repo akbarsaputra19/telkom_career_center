@@ -1,4 +1,4 @@
-part of '../pages.dart';
+part of '../../pages.dart';
 
 class InputResume extends StatefulWidget {
   const InputResume({super.key});

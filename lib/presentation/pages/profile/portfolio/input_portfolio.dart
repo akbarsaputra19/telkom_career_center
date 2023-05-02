@@ -1,4 +1,4 @@
-part of '../pages.dart';
+part of '../../pages.dart';
 
 class InputPortfolio extends StatefulWidget {
   const InputPortfolio({super.key});

@@ -48,8 +48,8 @@ class _RegisterState extends State<Register> {
             if (RegisterState is RegisterIsFailed) {
               Commons().showSnackbarError(context, RegisterState.message!);
             } else if (RegisterState is RegisterIsSuccess) {
-              Commons().setUid("${RegisterState.data!.id}");
-              Commons().showSnackbarInfo(context, "Login Berhasil");
+              Commons().setUid("${RegisterState.data}");
+              Commons().showSnackbarInfo(context, "Register Berhasil");
             }
           },
           child: Container(

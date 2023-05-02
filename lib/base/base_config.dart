@@ -17,4 +17,13 @@ abstract class BaseConfig {
   static const String ADD_WORK_EXPERIENCE = "/profile/1/add-work-experience";
   static const String UPDATE_WORK_EXPERIENCE = "/profile/1/update-work-experience";
   static const String DELETE_WORK_EXPERIENCE = "/profile/1/delete-work-experience";
+
+  //Jobs_Detail
+  static const String JOBS_DETAIL = "/jobs-detail";
+
+  //Update_Portfolio
+  static const String UPDATE_PORTFOLIO = "/profile/1/update-portofolio";
+
+  //Update_CV_Resume
+  static const String UPDATE_CV_RESUME = "/profile/1/update-cv-resume";
 }
