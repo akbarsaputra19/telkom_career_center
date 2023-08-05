@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:telkom_career/data/repository/jobs_detail/jobs_detail_repository_impl.dart';
 import 'package:telkom_career/data/repository/login/login_repository_impl.dart';
 import 'package:telkom_career/data/repository/register/register_repository_impl.dart';
+import 'package:telkom_career/domain/model/request/education/update_education_request.dart';
 import 'package:telkom_career/domain/model/request/work_experience/add_work_experience_request.dart';
 import 'package:telkom_career/presentation/pages/jobs_detail/cubit/jobs_detail_cubit.dart';
 import 'package:telkom_career/presentation/pages/login/cubit/login_cubit.dart';

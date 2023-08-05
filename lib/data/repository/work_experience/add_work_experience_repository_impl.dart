@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:telkom_career/base/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/service/remote/work_experience_remote_service.dart';
+import 'package:telkom_career/domain/base/authentication_header_request.dart';
 import 'package:telkom_career/domain/model/request/work_experience/add_work_experience_request.dart';
 import 'package:telkom_career/domain/repository/work_experience/add_work_experience_repository.dart';
 
@@ -10,11 +11,10 @@ class AddWorkExperienceRepositoryImpl implements AddWorkExperienceRepository {
   final addWorkExperienceRemoteService = AddWorkExperienceRemoteService();
 
   @override
-  Future<ResultEntitiy> addWorkExperience(AddWorkExperienceRequest request) async {
+  Future<ResultEntitiy> addWorkExperience(AddWorkExperienceRequest request, AuthenticationHeaderRequest header) async {
     try {
-      final response = 
-        await addWorkExperienceRemoteService.addWorkExperience(request);
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      final response = await addWorkExperienceRemoteService.addWorkExperience(request, header);
+      if (response.statusCode == 200) {
         BaseRemoteResponseCC baseResponseArray = BaseRemoteResponseCC.fromJson(
           jsonDecode(response.body), (json) => null
         );
@@ -27,8 +27,8 @@ class AddWorkExperienceRepositoryImpl implements AddWorkExperienceRepository {
       }
     } else {
       return ResultError(message: "");
-      } 
-    } catch (e) {
+    } 
+    } catch (error) {
       return ResultError(message: "");
     }
   }

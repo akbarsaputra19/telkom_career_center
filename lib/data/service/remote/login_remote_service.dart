@@ -6,9 +6,9 @@ class LoginRemoteService {
   Client client = Client();
 
   Future<Response> submitLogin(LoginRequest request) async {
-    final url = Uri.https(
-      BaseConfig.BASE_DOMAIN_CC,
-      BaseConfig.BASE_PATH_CC + BaseConfig.LOGIN_CC,
+    final url = Uri.http(
+      BaseConfig.BASE_DOMAIN,
+      BaseConfig.BASE_PATH_MOC + BaseConfig.LOGIN_CC,
     );
 
     return client.post(url, body: request.toJson());

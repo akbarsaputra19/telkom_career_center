@@ -512,14 +512,16 @@ class _InputEducationState extends State<InputEducation> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        BlocProvider.of<EducationCubit>(context).onUpdateEducation(
-                          _level.text,
-                          _name.text,
-                          _major.text,
-                          _currentlyEducation.text,
-                          _dateSelectedStart.text,
-                          _dateSelectedFinished.text,
-                          _additionalInformation.text
+                        BlocProvider.of<EducationCubit>(context).onAddEducation(
+                          UpdateEducationRequest(
+                            level: _level.text,
+                            name: _name.text,
+                            major: _major.text,
+                            stillEducation: _currentlyEducation.text,
+                            startEducation: _dateSelectedStart.text,
+                            endEducation: _dateSelectedFinished.text,
+                            description: _additionalInformation.text
+                          )
                         );
                       },
                       child: Container(

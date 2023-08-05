@@ -6,7 +6,7 @@ class AuthenticationHeaderRequest {
 
   Map<String, String> toHeader() {
     return <String, String>{
-      'Authentication': accesToken,
+      'Authorization': "Bearer $accesToken",
     };
   }
 }
