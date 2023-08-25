@@ -7,7 +7,7 @@ class AddWorkExperienceRemoteService {
   Client client = Client();
   Future<Response> addWorkExperience(AddWorkExperienceRequest request, AuthenticationHeaderRequest header) async {
     final url = Uri.http(
-      BaseConfig.BASE_DOMAIN,
+      BaseConfig.BASE_DOMAIN_MOC,
       BaseConfig.BASE_PATH_MOC + BaseConfig.ADD_WORK_EXPERIENCE
     );
     return client.post(url, body: request.toJson(), headers: header.toHeader());

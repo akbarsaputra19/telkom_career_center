@@ -1,29 +1,32 @@
+// ignore_for_file: constant_identifier_names
+
 abstract class BaseConfig {
-  static const String BASE_DOMAIN = "103.175.216.13:9091";
+  static const String BASE_DOMAIN_MOC = "103.175.216.13:9091";
+
+  // PATH
   static const String BASE_PATH_MOC = "/v1";
 
-  //Login
-  static const String LOGIN_CC = "/login";
-
-  //Register
+  // LOGIN
+  static const String LOGIN_MOC = "/login";
   static const String REGISTER_MOC = "/register";
+  static const String FORGET_PASSWORD = "/forget-password";
+  static const String FORGET_PASSWORD_OTP = "/otp/submit";
+  static const String FORGET_PASSWORD_UPDATE = "/update/forget-password";
 
-  //Education
+  // BERANDA
+  static const String HOME_MOC = "/beranda";
+  static const String LISTS_JOBS = "/list-jobs";
+  static const String BASE_COMPANY = "/company/";
+  static const String JOBS_DETAIL = "/job-detail/";
+
+  // PROFILE
+  static const String PROFILE_DATA = "/profile";
+  static const String LISTS_COMPANY = "/list-company";
+  static const String CHANGE_PASSWORD = "/change/password";
+  static const String UPDATE_PHOTO = "/profile/1/update-photo";
+  static const String UPDATE_PROFILE = "/profile/update-profile";
   static const String ADD_EDUCATION = "/profile/add-education";
-  static const String UPDATE_EDUCATION = "/profile/update-education";
-  static const String DELETE_EDUCATION = "/profile/1/deleted-education";
-
-  //Work_Experience
   static const String ADD_WORK_EXPERIENCE = "/profile/add-work-experience";
-  static const String UPDATE_WORK_EXPERIENCE = "/profile/1/update-work-experience";
-  static const String DELETE_WORK_EXPERIENCE = "/profile/1/delete-work-experience";
-
-  //Jobs_Detail
-  static const String JOBS_DETAIL = "/jobs-detail";
-
-  //Update_Portfolio
-  static const String UPDATE_PORTFOLIO = "/profile/1/update-portofolio";
-
-  //Update_CV_Resume
-  static const String UPDATE_CV_RESUME = "/profile/1/update-cv-resume";
+  static const String UPDATE_CV_RESUME = "/profile/update-cv-resume";
+  static const String UPDATE_PORTOFOLIO = "/profile/update-portofolio";
 }

@@ -1,12 +1,12 @@
-import 'package:equatable/equatable.dart';
+import "package:equatable/equatable.dart";
 
-abstract class ResultEntitiy<Z> extends Equatable {
+abstract class ResultEntity<D> extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class ResultSuccess<Z> implements ResultEntitiy<Z> {
-  final Z data;
+class ResultSuccess<D> implements ResultEntity<D> {
+  final D data;
 
   ResultSuccess(this.data);
 
@@ -17,7 +17,7 @@ class ResultSuccess<Z> implements ResultEntitiy<Z> {
   bool? get stringify => true;
 }
 
-class ResultError<Z> implements ResultEntitiy<Z> {
+class ResultError<D> implements ResultEntity<D> {
   final String? message;
 
   ResultError({this.message});

@@ -7,7 +7,7 @@ class EducationRemoteService {
   Client client = Client();
   Future<Response> addEducation(UpdateEducationRequest request, AuthenticationHeaderRequest header) async {
     final url = Uri.http(
-      BaseConfig.BASE_DOMAIN,
+      BaseConfig.BASE_DOMAIN_MOC,
       BaseConfig.BASE_PATH_MOC + BaseConfig.ADD_EDUCATION
     );
     return client.post(url, body: request.toJson(), headers: header.toHeader());

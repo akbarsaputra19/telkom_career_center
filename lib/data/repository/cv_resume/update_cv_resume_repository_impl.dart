@@ -9,7 +9,7 @@ class UpdateCvResumeRepositoryImpl implements UpdateCvResumeRepository {
   final cvResumeRemoteService = UpdateCvResumeRemoteService();
 
   @override
-  Future<ResultEntitiy> updateCvResume(String id, String profileId) async {
+  Future<ResultEntity> updateCvResume(String id, String profileId) async {
     try{
       final response = await cvResumeRemoteService.updateCvResume(id, profileId);
       if (response.statusCode == 200 || response.statusCode == 201) {

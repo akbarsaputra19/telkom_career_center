@@ -9,7 +9,7 @@ class UpdatePortfolioRepositoryImpl implements UpdatePortfolioRepository {
   final portfolioRemoteService = UpdatePortfolioRemoteService();
 
   @override
-  Future<ResultEntitiy> updatePortfolio(String id, String profileId) async {
+  Future<ResultEntity> updatePortfolio(String id, String profileId) async {
     try{
       final response = await portfolioRemoteService.updatePortfolio(id, profileId);
       if (response.statusCode == 200 || response.statusCode == 201){

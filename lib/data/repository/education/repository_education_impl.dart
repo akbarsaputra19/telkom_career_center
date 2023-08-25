@@ -13,7 +13,7 @@ class UpdateEducationRepositoryImpl implements EducationRepository {
   final addEducationRemoteService = EducationRemoteService();
 
   @override
-  Future<ResultEntitiy<UpdateEducation>> addEducation(UpdateEducationRequest request, AuthenticationHeaderRequest header) async{
+  Future<ResultEntity<UpdateEducation>> addEducation(UpdateEducationRequest request, AuthenticationHeaderRequest header) async{
     try {
       final response = await addEducationRemoteService.addEducation(request, header);
       if (response.statusCode == 200) {

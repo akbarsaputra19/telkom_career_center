@@ -12,7 +12,7 @@ class JobsDetailRepositoryImpl implements JobsDetailRepository {
   final jobsDetailRemoteService = JobsDetailRemoteService();
 
   @override
-  Future<ResultEntitiy<JobsDetailData>> fetchJobsDetail(AuthenticationHeaderRequest header, String id) async {
+  Future<ResultEntity<JobsDetailData>> fetchJobsDetail(AuthenticationHeaderRequest header, String id) async {
     try {
       final response = await jobsDetailRemoteService.fetchJobsDetail(header, id);
       if (response.statusCode == 200 || response.statusCode == 201){

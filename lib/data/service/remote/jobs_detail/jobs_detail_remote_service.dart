@@ -6,7 +6,7 @@ class JobsDetailRemoteService {
   Client client = Client();
   Future<Response> fetchJobsDetail(AuthenticationHeaderRequest header, String id) async {
     final url = Uri.https(
-      BaseConfig.BASE_DOMAIN,
+      BaseConfig.BASE_DOMAIN_MOC,
       BaseConfig.BASE_PATH_MOC + BaseConfig.JOBS_DETAIL + "$id"
     );
     print(url);

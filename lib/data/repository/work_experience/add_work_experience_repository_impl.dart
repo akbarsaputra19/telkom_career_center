@@ -11,7 +11,7 @@ class AddWorkExperienceRepositoryImpl implements AddWorkExperienceRepository {
   final addWorkExperienceRemoteService = AddWorkExperienceRemoteService();
 
   @override
-  Future<ResultEntitiy> addWorkExperience(AddWorkExperienceRequest request, AuthenticationHeaderRequest header) async {
+  Future<ResultEntity> addWorkExperience(AddWorkExperienceRequest request, AuthenticationHeaderRequest header) async {
     try {
       final response = await addWorkExperienceRemoteService.addWorkExperience(request, header);
       if (response.statusCode == 200) {
