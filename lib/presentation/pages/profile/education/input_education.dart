@@ -18,6 +18,28 @@ class _InputEducationState extends State<InputEducation> {
   final TextEditingController _dateSelectedFinished = TextEditingController();
   final TextEditingController _additionalInformation = TextEditingController();
 
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  late EducationCubit _educationCubit;
+
+  @override
+  void initState() {
+    _educationCubit = EducationCubit(UpdateEducationRepositoryImpl());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _level;
+    _name;
+    _major;
+    _currentlyEducation;
+    _dateSelectedStart;
+    _dateSelectedFinished;
+    _additionalInformation;
+    _educationCubit.close();
+    super.dispose();
+  }
+
   Image iconCurrentlyEducation() {
     if (_isEducation) {
       _currentlyEducation.text = "Tidak";
@@ -170,19 +192,28 @@ class _InputEducationState extends State<InputEducation> {
           ),
         ),
         body: SingleChildScrollView(
-          child: SafeArea(
-            child: Container(
-              color: Colors.grey[100],
-              child: Column(
-                children: <Widget> [
-                  Container(
-                    margin: const EdgeInsets.only(top: 16),
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.only(left: 16),
-                    child: const Text(
-                      "Jenjang",
-                      style: TextStyle(
-                        fontFamily: "inter_semibold",
+          child: BlocConsumer<EducationCubit, EducationState>(
+            listener: (context, educationState) {
+              if (educationState is EducationIsSuccess) {
+                context.goNamed(Routes.profileblankPage);
+              } else if (educationState is EducationIsFailed) {
+                print("Input Education Failed");
+              }
+            },
+            builder: (context, educationState) {
+              return SafeArea(
+                child: Container(
+                color: Colors.grey[100],
+                child: Column(
+                  children: <Widget> [
+                    Container(
+                      margin: const EdgeInsets.only(top: 16),
+                      alignment: Alignment.topLeft,
+                      padding: const EdgeInsets.only(left: 16),
+                      child: const Text(
+                        "Jenjang",
+                        style: TextStyle(
+                          fontFamily: "inter_semibold",
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: Color(0xff333333)
@@ -510,27 +541,26 @@ class _InputEducationState extends State<InputEducation> {
                         keyboardType: TextInputType.multiline,
                       )
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        BlocProvider.of<EducationCubit>(context).onAddEducation(
-                          UpdateEducationRequest(
-                            level: _level.text,
-                            name: _name.text,
-                            major: _major.text,
-                            stillEducation: _currentlyEducation.text,
-                            startEducation: _dateSelectedStart.text,
-                            endEducation: _dateSelectedFinished.text,
-                            description: _additionalInformation.text
-                          )
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.fromLTRB(16, 100, 15, 21),
-                        child: ElevatedButton(
-                          onPressed: () => context.go('/experience'),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xffEA232A),
-                            padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(16, 50, 15, 21),
+                      height: 60,
+                      width: 375,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          BlocProvider.of<EducationCubit>(context).onAddEducation(
+                            UpdateEducationRequest(
+                              level: _level.text,
+                              name: _name.text,
+                              major: _major.text,
+                              stillEducation: _currentlyEducation.text,
+                              startEducation: _dateSelectedStart.text,
+                              endEducation: _dateSelectedFinished.text,
+                              description: _additionalInformation.text
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffEA232A)
                           ),
                           child: const Text(
                             "Simpan",
@@ -540,16 +570,17 @@ class _InputEducationState extends State<InputEducation> {
                               fontWeight: FontWeight.w700,
                               color: Color(0xffFFFFFF),
                             ),
-                          )
+                          ),
                         )
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ),
+                      )
+                    ],
+                  ),
+                )
+              );
+            }
           ),
         ),
-      );
-    }
+      ),
+    );
   }
+}

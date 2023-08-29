@@ -39,6 +39,7 @@ class Routes {
 
   // akbar
   static var profileinputportofolioPage = "profileinputportofolio";
+  static var profileinputEducation = "inputeducation";
 
 // Search
   static var searchscreenPage = "searchscreen";

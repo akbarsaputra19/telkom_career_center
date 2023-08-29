@@ -15,11 +15,11 @@ class EducationCubit extends Cubit<EducationState> {
   ) : super(EducationInitial());
 
   Future<void> onAddEducation(UpdateEducationRequest request) async {
-    emit(EducationIsLoading());
     final token = await Commons().getUid();
+    emit(EducationIsLoading());
     final response = await repository.addEducation(request, AuthenticationHeaderRequest(token));
     if (response is ResultSuccess) {
-      emit(EducationIsSuccess(message: "Update pendidikan berhasil"));
+      emit(EducationIsSuccess(message: "Update Education Success"));
       final token = (response).data;
       print(token);
     } else {

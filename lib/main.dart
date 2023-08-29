@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telkom_career/data/repository/company/company_data_repository_impl.dart';
+import 'package:telkom_career/data/repository/education/repository_education_impl.dart';
 import 'package:telkom_career/data/repository/forget_password/forget_password_otp_repository_impl.dart';
 import 'package:telkom_career/data/repository/forget_password/forget_password_repository_impl.dart';
 import 'package:telkom_career/data/repository/forget_password/forget_password_update_repository_impl.dart';
@@ -22,6 +23,7 @@ import 'package:telkom_career/presentation/pages/login_moc/cubit/loginmoc_cubit.
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_change_password_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_data_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_edit_profile_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/education/cubit/education_cubit.dart';
 import 'package:telkom_career/presentation/pages/register/cubit/register_cubit.dart';
 import 'package:telkom_career/presentation/pages/search/cubit/lists_company_data_cubit.dart';
 
@@ -101,6 +103,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               ProfileChangePasswordCubit(ProfileChangePasswordRepositoryImpl()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              EducationCubit(UpdateEducationRepositoryImpl()),
         ),
       ],
       child: MaterialApp.router(

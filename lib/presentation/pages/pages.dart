@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+import 'package:telkom_career/data/repository/education/repository_education_impl.dart';
 import 'package:telkom_career/data/repository/forget_password/forget_password_otp_repository_impl.dart';
 import 'package:telkom_career/data/repository/forget_password/forget_password_repository_impl.dart';
 import 'package:telkom_career/data/repository/forget_password/forget_password_update_repository_impl.dart';
@@ -89,6 +90,7 @@ part 'profile/input_work_experience.dart';
 
 // akbar
 part 'profile/profile_input_portofolio.dart';
+part 'login/loginpage.dart';
 part 'profile/education/input_education.dart';
 part 'profile/portfolio/input_portfolio.dart';
 part 'jobs_detail/detail_pekerjaan.dart';

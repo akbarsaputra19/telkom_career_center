@@ -10,7 +10,7 @@ import 'package:telkom_career/presentation/pages/search/cubit/lists_company_data
 import '../pages/pages.dart';
 import 'Routes.dart';
 
-final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
+final GoRouter saRouter = GoRouter(initialLocation: "/inputeducation", routes: [
   // LOGIN //
   GoRoute(
       path: "/loginmoc",
@@ -126,6 +126,10 @@ final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
       path: "/experience",
       name: Routes.workexperience,
       builder: (context, state) => const WorkExperience()),
+  GoRoute(
+      path: "/inputeducation",
+      name: Routes.profileinputEducation,
+      builder: (context, state) => const InputEducation()),
 
   // SEARCH //
   GoRoute(

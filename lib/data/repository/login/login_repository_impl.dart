@@ -12,7 +12,7 @@ class LoginRepositoryImpl implements LoginRepository {
   final remoteService = LoginRemoteService();
 
   @override
-  Future<ResultEntity<UserLoginData>> submitLogin(LoginRequest request) async {
+  Future<ResultEntity<UserLoginDataMoc>> submitLogin(LoginRequest request) async {
     try {
       final response = await remoteService.submitLogin(request);
       if (response.statusCode == 200 || response.statusCode == 201) {
