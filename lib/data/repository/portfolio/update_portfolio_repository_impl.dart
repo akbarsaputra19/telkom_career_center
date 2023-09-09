@@ -11,7 +11,7 @@ class UpdatePortfolioRepositoryImpl implements UpdatePortfolioRepository {
   @override
   Future<ResultEntity> updatePortfolio(String id, String profileId) async {
     try{
-      final response = await portfolioRemoteService.updatePortfolio(id, profileId);
+      final response = await portfolioRemoteService.updatePortfolio();
       if (response.statusCode == 200 || response.statusCode == 201){
         BaseRemoteResponseCC baseResponsePortfolio = BaseRemoteResponseCC.fromJson(
           jsonDecode(response.body), (json) => null

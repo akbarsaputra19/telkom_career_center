@@ -15,6 +15,7 @@ import 'package:telkom_career/data/repository/jobs_detail/jobs_detail_repository
 import 'package:telkom_career/data/repository/profile/profile_change_password_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_edit_profile_repository_impl.dart';
 import 'package:telkom_career/data/repository/register/register_repository_impl.dart';
+import 'package:telkom_career/data/repository/work_experience/add_work_experience_repository_impl.dart';
 import 'package:telkom_career/domain/model/request/education/update_education_request.dart';
 import 'package:telkom_career/domain/model/request/forget_password/forget_password_otp_request.dart';
 import 'package:telkom_career/domain/model/request/forget_password/forget_password_request.dart';
@@ -86,11 +87,8 @@ part 'profile/profile_change_password.dart';
 part 'profile/profile_edit_profile.dart';
 part 'profile/profile_input_ability.dart';
 part 'profile/profile_input_language.dart';
-part 'profile/input_work_experience.dart';
 
 // akbar
-part 'profile/profile_input_portofolio.dart';
-part 'login/loginpage.dart';
 part 'profile/education/input_education.dart';
 part 'profile/portfolio/input_portfolio.dart';
 part 'jobs_detail/detail_pekerjaan.dart';

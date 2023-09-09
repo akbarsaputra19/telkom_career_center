@@ -4,7 +4,7 @@ import 'package:telkom_career/base/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/model/login/login_remote_response.dart';
 import 'package:telkom_career/data/service/remote/login_remote_service.dart';
-import 'package:telkom_career/domain/model/login/login_user_data.dart';
+import 'package:telkom_career/domain/model/data/login_moc/login_user_data.dart';
 import 'package:telkom_career/domain/model/request/login/login_request.dart';
 import 'package:telkom_career/domain/repository/login/login_repository.dart';
 

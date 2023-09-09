@@ -15,11 +15,12 @@ AddWorkExperienceRequest _$AddWorkExperienceRequestFromJson(
       startWork: json['startWork'] as String?,
       endWork: json['endWork'] as String?,
       description: json['description'] as String?,
-    );
+    )..accesToken = json['accesToken'] as String;
 
 Map<String, dynamic> _$AddWorkExperienceRequestToJson(
         AddWorkExperienceRequest instance) =>
     <String, dynamic>{
+      'accesToken': instance.accesToken,
       'skillExperience': instance.skillExperience,
       'name': instance.name,
       'stillWorking': instance.stillWorking,

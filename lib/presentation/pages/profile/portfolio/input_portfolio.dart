@@ -37,7 +37,7 @@ class _InputPortfolioState extends State<InputPortfolio> {
                       .pickFiles(allowedExtensions: ["pdf"], type: FileType.custom);
 
                     if (result != null) {
-                      IO.File file = IO.File(result.files.single.path!);
+                      File file = File(result.files.single.path!);
                       PlatformFile platformFile = result.files.first;
                       setState(() {
                         pathFile = platformFile.path!;

@@ -101,7 +101,7 @@ class _InputResumeState extends State<InputResume> {
                                 .pickFiles(allowedExtensions: ["pdf"], type: FileType.custom);
 
                               if (result != null) {
-                                IO.File file = IO.File(result.files.single.path!);
+                                File file = File(result.files.single.path!);
                                 PlatformFile platformFile = result.files.first;
                                 setState(() {
                                   pathFile = platformFile.path!;

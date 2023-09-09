@@ -16,11 +16,12 @@ UpdateEducationRequest _$UpdateEducationRequestFromJson(
       startEducation: json['startEducation'] as String?,
       endEducation: json['endEducation'] as String?,
       description: json['description'] as String?,
-    );
+    )..accesToken = json['accesToken'] as String;
 
 Map<String, dynamic> _$UpdateEducationRequestToJson(
         UpdateEducationRequest instance) =>
     <String, dynamic>{
+      'accesToken': instance.accesToken,
       'level': instance.level,
       'name': instance.name,
       'major': instance.major,

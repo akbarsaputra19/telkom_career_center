@@ -11,7 +11,7 @@ class UpdateCvResumeRepositoryImpl implements UpdateCvResumeRepository {
   @override
   Future<ResultEntity> updateCvResume(String id, String profileId) async {
     try{
-      final response = await cvResumeRemoteService.updateCvResume(id, profileId);
+      final response = await cvResumeRemoteService.updateCvResume();
       if (response.statusCode == 200 || response.statusCode == 201) {
         BaseRemoteResponseCC baseResponseCvResume = BaseRemoteResponseCC.fromJson(
           jsonDecode(response.body), (json) => null
