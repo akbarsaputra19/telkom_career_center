@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telkom_career/data/repository/company/company_data_repository_impl.dart';
+import 'package:telkom_career/data/repository/cv_resume/update_cv_resume_repository_impl.dart';
 import 'package:telkom_career/data/repository/education/repository_education_impl.dart';
 import 'package:telkom_career/data/repository/forget_password/forget_password_otp_repository_impl.dart';
 import 'package:telkom_career/data/repository/forget_password/forget_password_repository_impl.dart';
@@ -8,10 +9,12 @@ import 'package:telkom_career/data/repository/forget_password/forget_password_up
 import 'package:telkom_career/data/repository/listjob/list_job_repository_impl.dart';
 import 'package:telkom_career/data/repository/lists_company_repository/lists_company_data_repository_impl.dart';
 import 'package:telkom_career/data/repository/login_moc/login_repositorymoc_impl.dart';
+import 'package:telkom_career/data/repository/portfolio/update_portfolio_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_change_password_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_data_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_edit_profile_repository_impl.dart';
 import 'package:telkom_career/data/repository/register/register_repository_impl.dart';
+import 'package:telkom_career/data/repository/work_experience/add_work_experience_repository_impl.dart';
 import 'package:telkom_career/presentation/navigation/SARoute.dart';
 import 'package:flutter/services.dart';
 import 'package:telkom_career/presentation/pages/company/cubit/company_data_cubit.dart';
@@ -23,7 +26,10 @@ import 'package:telkom_career/presentation/pages/login_moc/cubit/loginmoc_cubit.
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_change_password_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_data_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_edit_profile_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/cv_resume/cubit/update_cv_resume_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/education/cubit/education_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/portfolio/cubit/update_portfolio_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/work_experience/cubit/add_work_experience_cubit.dart';
 import 'package:telkom_career/presentation/pages/register/cubit/register_cubit.dart';
 import 'package:telkom_career/presentation/pages/search/cubit/lists_company_data_cubit.dart';
 
@@ -108,6 +114,18 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               EducationCubit(UpdateEducationRepositoryImpl()),
         ),
+        BlocProvider(
+          create: (context) =>
+              AddWorkExperienceCubit(AddWorkExperienceRepositoryImpl()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              UpdateCvResumeCubit(UpdateCvResumeRepositoryImpl()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              UpdatePortfolioCubit(UpdatePortfolioRepositoryImpl()),
+        )
       ],
       child: MaterialApp.router(
         routerDelegate: saRouter.routerDelegate,

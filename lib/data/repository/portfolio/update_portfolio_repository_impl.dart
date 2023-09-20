@@ -3,15 +3,17 @@ import 'dart:convert';
 import 'package:telkom_career/base/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/service/remote/portfolio/update_portfolio_remote_service.dart';
+import 'package:telkom_career/domain/base/authentication_header_request.dart';
+import 'package:telkom_career/domain/model/request/portfolio/portfolio_request.dart';
 import 'package:telkom_career/domain/repository/portfolio/update_portfolio_repository.dart';
 
 class UpdatePortfolioRepositoryImpl implements UpdatePortfolioRepository {
   final portfolioRemoteService = UpdatePortfolioRemoteService();
 
   @override
-  Future<ResultEntity> updatePortfolio(String id, String profileId) async {
+  Future<ResultEntity> updatePortfolio(PortfolioRequest request, AuthenticationHeaderRequest header) async {
     try{
-      final response = await portfolioRemoteService.updatePortfolio();
+      final response = await portfolioRemoteService.updatePortfolio(request, header);
       if (response.statusCode == 200 || response.statusCode == 201){
         BaseRemoteResponseCC baseResponsePortfolio = BaseRemoteResponseCC.fromJson(
           jsonDecode(response.body), (json) => null

@@ -10,6 +10,27 @@ class InputPortfolio extends StatefulWidget {
 class _InputPortfolioState extends State<InputPortfolio> {
   String fileName = '';
   String pathFile = '';
+  File? file;
+
+  late UpdatePortfolioCubit _updatePortfolioCubit;
+
+  @override
+  void initState() {
+    _updatePortfolioCubit = UpdatePortfolioCubit(UpdatePortfolioRepositoryImpl());
+    super.initState();
+    fileName;
+    pathFile;
+    file;
+  }
+
+  @override
+  void dispose() {
+    _updatePortfolioCubit.close();
+    super.dispose();
+    fileName;
+    pathFile;
+    file;
+  }
 
   void showMoreUpload() {
     showModalBottomSheet(
@@ -172,143 +193,160 @@ class _InputPortfolioState extends State<InputPortfolio> {
           ),
           elevation: 0.05
         ),
-      body: Container(
-        color: Colors.grey[100],
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(top: 40, bottom: 16),
-                child: Image.asset(
-                  "assets/images/illus-portfolio.png",
-                  width: 286,
-                  height: 200,
-                )
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 40, left: 16, right: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Tambahkan Portfolio terbaik anda",
-                      style: TextStyle(
-                        fontFamily: "inter_semibold",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff333333)
-                      ),
-                      textAlign: TextAlign.center
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      "Unggah Portfolio dengan format pdf",
-                      style: TextStyle(
-                        fontFamily: "Regular",
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff333333)
-                      ),
-                      textAlign: TextAlign.center
-                    )
-                  ]
-                )
-              ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(10, 20, 0, 16),
-                child: InkWell(
-                  onTap: () {
-                    showMoreUpload();
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
+      body: BlocConsumer<UpdatePortfolioCubit, UpdatePortfolioState>(
+        listener: (context, updatePortfolioState) {
+          if (updatePortfolioState is UpdatePortfolioIsSuccess) {
+            context.goNamed(Routes.profileblankPage);
+          } else if (updatePortfolioState is UpdatePortfolioIsFailed) {
+            print("Upload Portfolio is Failed");
+          }
+        },
+        builder: (context, updatePortfolioState) {
+          return Container(
+          color: Colors.grey[100],
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 40, bottom: 16),
+                  child: Image.asset(
+                    "assets/images/illus-portfolio.png",
+                    width: 286,
+                    height: 200,
+                  )
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 40, left: 16, right: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
                       Text(
-                        "Unggah Portfolio",
+                        "Tambahkan Portfolio terbaik anda",
                         style: TextStyle(
                           fontFamily: "inter_semibold",
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xffEA232A)
+                          color: Color(0xff333333)
                         ),
+                        textAlign: TextAlign.center
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        "Unggah Portfolio dengan format pdf",
+                        style: TextStyle(
+                          fontFamily: "Regular",
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff333333)
+                        ),
+                        textAlign: TextAlign.center
                       )
-                    ],
-                  ),
+                    ]
+                  )
                 ),
-              ),
-              const Divider(
-                thickness: 2
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 5, left: 16, bottom: 5, right: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Portfolio terunggah",
+                Container(
+                  margin: const EdgeInsets.fromLTRB(10, 20, 0, 16),
+                  child: InkWell(
+                    onTap: () {
+                      showMoreUpload();
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const <Widget>[
+                        Text(
+                          "Unggah Portfolio",
                           style: TextStyle(
                             fontFamily: "inter_semibold",
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xff333333)
-                          )
-                        ),
-                        Text(
-                          "Portfolio $fileName",
-                          style: const TextStyle(
-                            fontFamily: "Regular",
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff666666)
-                          )
-                        ),
+                            color: Color(0xffEA232A)
+                          ),
+                        )
                       ],
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 110),
-                      child: IconButton(
-                        onPressed: () {
-                          showMore();
-                        },
-                        icon: Image.asset(
-                          'assets/icons/more.png',
-                        width: 24,
-                        height: 24
-                        )
-                      ),
-                    )
-                  ]
-                )
-              ),
-              const Divider(
-                thickness: 2
-              ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(16, 190, 15, 21),
-                child: ElevatedButton(
-                  onPressed: () => context.go('/resume'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffEA232A),
-                    padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),
                   ),
-                  child: const Text(
-                    "Simpan",
-                    style: TextStyle(
-                      fontFamily: "inter_bold",
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xffFFFFFF),
-                    ),
+                ),
+                const Divider(
+                  thickness: 2
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 5, left: 16, bottom: 5, right: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Portfolio terunggah",
+                            style: TextStyle(
+                              fontFamily: "inter_semibold",
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xff333333)
+                            )
+                          ),
+                          Text(
+                            "Portfolio $fileName",
+                            style: const TextStyle(
+                              fontFamily: "Regular",
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff666666)
+                            )
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 110),
+                        child: IconButton(
+                          onPressed: () {
+                            showMore();
+                          },
+                          icon: Image.asset(
+                            'assets/icons/more.png',
+                          width: 24,
+                          height: 24
+                          )
+                        ),
+                      )
+                    ]
                   )
-                )
-              )
-            ],
-          ),
-        ),
+                ),
+                const Divider(
+                  thickness: 2
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(16, 190, 15, 21),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<UpdatePortfolioCubit>(context).updatePortfolio(
+                        PortfolioRequest(
+                          portfolioFile: file!
+                        )
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xffEA232A),
+                      padding: const EdgeInsets.fromLTRB(146, 12, 146, 12),
+                    ),
+                    child: const Text(
+                      "Simpan",
+                      style: TextStyle(
+                        fontFamily: "inter_bold",
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xffFFFFFF),
+                      ),
+                      )
+                    )
+                  )
+                ],
+              ),
+            ),
+          );
+        }
       ),
     );
   }
