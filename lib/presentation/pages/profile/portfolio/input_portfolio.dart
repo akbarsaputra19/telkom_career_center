@@ -187,7 +187,7 @@ class _InputPortfolioState extends State<InputPortfolio> {
           centerTitle: true,
           backgroundColor: const Color(0xffFFFFFF),
           leading: IconButton(
-            onPressed: () => context.go('/sudah'),
+            onPressed: () => context.go('/profileblank'),
             icon: const Icon(Icons.arrow_back_ios_rounded, color: Color(0xff333333)
             ),
           ),
@@ -288,7 +288,7 @@ class _InputPortfolioState extends State<InputPortfolio> {
                             )
                           ),
                           Text(
-                            "Portfolio $fileName",
+                            " $fileName",
                             style: const TextStyle(
                               fontFamily: "Regular",
                               fontSize: 10,
@@ -318,12 +318,12 @@ class _InputPortfolioState extends State<InputPortfolio> {
                   thickness: 2
                 ),
                 Container(
-                  margin: const EdgeInsets.fromLTRB(16, 190, 15, 21),
+                  margin: const EdgeInsets.fromLTRB(16, 170, 15, 21),
                   child: ElevatedButton(
                     onPressed: () {
                       BlocProvider.of<UpdatePortfolioCubit>(context).updatePortfolio(
                         PortfolioRequest(
-                          portfolioFile: file!
+                          file!
                         )
                       );
                     },

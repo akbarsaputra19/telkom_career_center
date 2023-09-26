@@ -15,9 +15,15 @@ import 'package:telkom_career/data/repository/forget_password/forget_password_up
 import 'package:telkom_career/data/repository/jobs_detail/jobs_detail_repository_impl.dart';
 import 'package:telkom_career/data/repository/portfolio/update_portfolio_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_change_password_repository_impl.dart';
+import 'package:telkom_career/data/repository/profile/profile_data_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_edit_profile_repository_impl.dart';
+import 'package:telkom_career/data/repository/profile/profile_update_ability_repository_impl.dart';
+import 'package:telkom_career/data/repository/profile/profile_update_language_repository_impl.dart';
 import 'package:telkom_career/data/repository/register/register_repository_impl.dart';
 import 'package:telkom_career/data/repository/work_experience/add_work_experience_repository_impl.dart';
+import 'package:telkom_career/domain/model/data/profile/education_data.dart';
+import 'package:telkom_career/domain/model/data/profile/profile_edit_profile_data.dart';
+import 'package:telkom_career/domain/model/data/profile/work_experience_data.dart';
 import 'package:telkom_career/domain/model/request/cvresume/cvresume_request.dart';
 import 'package:telkom_career/domain/model/request/education/update_education_request.dart';
 import 'package:telkom_career/domain/model/request/forget_password/forget_password_otp_request.dart';
@@ -27,6 +33,8 @@ import 'package:telkom_career/domain/model/request/login_request_moc/login_reque
 import 'package:telkom_career/domain/model/request/portfolio/portfolio_request.dart';
 import 'package:telkom_career/domain/model/request/profile/profile_change_password/profile_change_password_request.dart';
 import 'package:telkom_career/domain/model/request/profile/profile_edit_profile/profile_edit_profile_request.dart';
+import 'package:telkom_career/domain/model/request/profile/profile_update_ability/profile_update_ability_request.dart';
+import 'package:telkom_career/domain/model/request/profile/profile_update_language/profile_update_language_request.dart';
 import 'package:telkom_career/domain/model/request/register/register_request.dart';
 import 'package:telkom_career/domain/model/request/work_experience/add_work_experience_request.dart';
 import 'package:telkom_career/presentation/pages/company/cubit/about_company_data_cubit.dart';
@@ -35,10 +43,14 @@ import 'package:telkom_career/presentation/pages/forget_password/cubit/forget_pa
 import 'package:telkom_career/presentation/pages/forget_password/cubit/forget_password_otp_cubit.dart';
 import 'package:telkom_career/presentation/pages/forget_password/cubit/forget_password_update_cubit.dart';
 import 'package:telkom_career/presentation/pages/jobs_detail/cubit/jobs_detail_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/ability/cubit/ability_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_change_password_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/cubit/profile_data_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_edit_profile_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/cubit/update_photo_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/cv_resume/cubit/update_cv_resume_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/education/cubit/education_cubit.dart';
+import 'package:telkom_career/presentation/pages/profile/language/cubit/language_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/portfolio/cubit/update_portfolio_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/work_experience/cubit/add_work_experience_cubit.dart';
 import 'package:telkom_career/presentation/pages/register/cubit/register_cubit.dart';
@@ -91,8 +103,8 @@ part 'profile/profile_blank.dart';
 part 'profile/profile_settings.dart';
 part 'profile/profile_change_password.dart';
 part 'profile/profile_edit_profile.dart';
-part 'profile/profile_input_ability.dart';
-part 'profile/profile_input_language.dart';
+part 'profile/ability/profile_input_ability.dart';
+part 'profile/language/profile_input_language.dart';
 
 // akbar
 part 'profile/education/input_education.dart';

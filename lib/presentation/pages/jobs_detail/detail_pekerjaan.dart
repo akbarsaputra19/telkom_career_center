@@ -35,9 +35,12 @@ class _DetailPekerjaanState extends State<DetailPekerjaan> {
           color: Color(0xff333333)
         ),
         backgroundColor: const Color(0xffFFFFFF),
-        leading: const Icon(Icons.arrow_back_ios_rounded, color: Color(0xff333333)
+        leading: IconButton(
+          onPressed: () => context.go('/jobscreen'),
+          icon: const Icon(Icons.arrow_back_ios_rounded, color: Color(0xff333333)
         ),
-        elevation: 0.05,
+      ),
+        elevation: 0.05
       ),
       body: BlocBuilder<JobsDetailCubit, JobsDetailState>(
         builder: (context, state) {

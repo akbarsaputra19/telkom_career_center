@@ -1,15 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:telkom_career/domain/model/data/profile/date_range_data.dart';
+
 class WorkExperienceData {
-  String? skillExperience;
-  String? name;
-  String? startWork;
-  String? endWork;
-  String? description;
-  WorkExperienceData({
-    this.skillExperience,
-    this.name,
-    this.startWork,
-    this.endWork,
-    this.description,
-  });
+  String Id;
+  String SkillExperience;
+  String Name;
+  bool StillWorking;
+  DateRangeData DateRange;
+  String Description;
+  WorkExperienceData(
+     this.Id,
+     this.SkillExperience,
+     this.Name,
+     this.StillWorking,
+     this.DateRange,
+     this.Description,
+  );
 }

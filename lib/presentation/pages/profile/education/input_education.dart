@@ -8,17 +8,16 @@ class InputEducation extends StatefulWidget {
 }
 
 class _InputEducationState extends State<InputEducation> {
-  bool _isEducation = false;
-
   final TextEditingController _level = TextEditingController();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _major = TextEditingController();
-  final TextEditingController _currentlyEducation = TextEditingController();
-  final TextEditingController _dateSelectedStart = TextEditingController();
-  final TextEditingController _dateSelectedFinished = TextEditingController();
-  final TextEditingController _additionalInformation = TextEditingController();
+  final TextEditingController _stillEducation = TextEditingController();
+  final TextEditingController _startEducation = TextEditingController();
+  final TextEditingController _endEducation = TextEditingController();
+  final TextEditingController _description = TextEditingController();
 
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  bool _isEducation = false;
+
   late EducationCubit _educationCubit;
 
   @override
@@ -32,25 +31,25 @@ class _InputEducationState extends State<InputEducation> {
     _level;
     _name;
     _major;
-    _currentlyEducation;
-    _dateSelectedStart;
-    _dateSelectedFinished;
-    _additionalInformation;
+    _stillEducation;
+    _startEducation;
+    _endEducation;
+    _description;
     _educationCubit.close();
     super.dispose();
   }
 
-  Image iconCurrentlyEducation() {
+  Image iconStillEducation() {
     if (_isEducation) {
-      _currentlyEducation.text = "Tidak";
+      _stillEducation.text = "Tidak";
       return Image.asset("assets/icons/toggle-off.png");
     } else {
-      _currentlyEducation.text = "Ya";
+      _stillEducation.text = "Ya";
       return Image.asset("assets/icons/toggle-on.png");
     }
   }
 
-  void currentlyEducationOnClick() {
+  void stillEducationOnClick() {
     setState(() {
       _isEducation = !_isEducation;
     });
@@ -179,9 +178,10 @@ class _InputEducationState extends State<InputEducation> {
           backgroundColor: const Color(0xffFFFFFF),
           centerTitle: true,
           elevation: 0.5,
-          leading: const Icon(
-            Icons.arrow_back_ios_rounded,
-            color: Color(0xff333333)
+          leading: IconButton(
+            onPressed: () => context.go('/profileblank'),
+            icon: const Icon(Icons.arrow_back_ios_rounded, color: Color(0xff333333)
+            ),
           ),
           title: const Text('Pendidikan'),
           titleTextStyle: const TextStyle(
@@ -194,10 +194,13 @@ class _InputEducationState extends State<InputEducation> {
         body: SingleChildScrollView(
           child: BlocConsumer<EducationCubit, EducationState>(
             listener: (context, educationState) {
-              if (educationState is EducationIsSuccess) {
-                context.goNamed(Routes.profileblankPage);
+              if (educationState is EducationIsLoading) {
+                const CircularProgressIndicator(color: Colors.red);
               } else if (educationState is EducationIsFailed) {
+                Commons().showSnackbarError(context, 'Input Education Failed');
                 print("Input Education Failed");
+              } else if (educationState is EducationIsSuccess) {
+                context.goNamed(Routes.profileblankPage);
               }
             },
             builder: (context, educationState) {
@@ -225,6 +228,7 @@ class _InputEducationState extends State<InputEducation> {
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
                       controller: _level,
+                      readOnly: true,
                       style: const TextStyle(
                         fontFamily: "inter_regular",
                         fontSize: 12,
@@ -352,7 +356,7 @@ class _InputEducationState extends State<InputEducation> {
                     margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
-                      controller: _currentlyEducation,
+                      controller: _stillEducation,
                       readOnly: true,
                       style: const TextStyle(
                         fontFamily: "inter_regular",
@@ -362,8 +366,8 @@ class _InputEducationState extends State<InputEducation> {
                       ),
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
-                          onPressed: currentlyEducationOnClick,
-                          icon: iconCurrentlyEducation()
+                          onPressed: stillEducationOnClick,
+                          icon: iconStillEducation()
                         ),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
@@ -396,7 +400,7 @@ class _InputEducationState extends State<InputEducation> {
                     margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
-                      controller: _dateSelectedStart,
+                      controller: _startEducation,
                       readOnly: true,
                       style: const TextStyle(
                         fontFamily: "inter_regular",
@@ -411,12 +415,12 @@ class _InputEducationState extends State<InputEducation> {
                             DateTime? pickedDate = await showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
-                              firstDate: DateTime(1945),
+                              firstDate: DateTime(1980),
                               lastDate: DateTime(2100)
                               );
                               if (pickedDate != null) {
                                 String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
-                                _dateSelectedStart.text = dateFormat;
+                                _startEducation.text = dateFormat;
                               }
                             },
                           icon: Image.asset("assets/icons/calendar.png")
@@ -456,7 +460,7 @@ class _InputEducationState extends State<InputEducation> {
                           margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                           child: TextFormField(
                             cursorColor: const Color(0xff333333),
-                            controller: _dateSelectedFinished,
+                            controller: _endEducation,
                             readOnly: true,
                             style: const TextStyle(
                               fontFamily: "inter_regular",
@@ -471,12 +475,12 @@ class _InputEducationState extends State<InputEducation> {
                                   DateTime? pickedDate = await showDatePicker(
                                     context: context,
                                     initialDate: DateTime.now(),
-                                    firstDate: DateTime(1945),
+                                    firstDate: DateTime(1970),
                                     lastDate: DateTime(2100)
                                   );
                                   if (pickedDate != null) {
                                   String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
-                                  _dateSelectedFinished.text = dateFormat;
+                                  _endEducation.text = dateFormat;
                                   }
                                 },
                                 icon: Image.asset("assets/icons/calendar.png")
@@ -515,7 +519,7 @@ class _InputEducationState extends State<InputEducation> {
                     margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                     child: TextFormField(
                       cursorColor: const Color(0xff333333),
-                      controller: _additionalInformation,
+                      controller: _description,
                       maxLines: 7,
                       minLines: 5,
                       style: const TextStyle(
@@ -549,13 +553,13 @@ class _InputEducationState extends State<InputEducation> {
                         onPressed: () {
                           BlocProvider.of<EducationCubit>(context).onAddEducation(
                             UpdateEducationRequest(
-                              level: _level.text,
-                              name: _name.text,
-                              major: _major.text,
-                              stillEducation: _currentlyEducation.text,
-                              startEducation: _dateSelectedStart.text,
-                              endEducation: _dateSelectedFinished.text,
-                              description: _additionalInformation.text
+                              _level.text,
+                              _name.text,
+                              _major.text,
+                              _stillEducation.text,
+                              _startEducation.text,
+                              _endEducation.text,
+                              _description.text
                             ),
                           );
                         },

@@ -8,16 +8,17 @@ class WorkExperience extends StatefulWidget {
 }
 
 class _WorkExperienceState extends State<WorkExperience> {
+  final TextEditingController _skillExperience = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _stillWorking = TextEditingController();
+  final TextEditingController _startWork = TextEditingController();
+  final TextEditingController _endWork = TextEditingController();
+  final TextEditingController _description = TextEditingController();
+
+  DateTime? _selectedDate;
+
   bool _isWorking = false;
 
-  final TextEditingController _position = TextEditingController();
-  final TextEditingController _companyName = TextEditingController();
-  final TextEditingController _currentlyWork = TextEditingController();
-  final TextEditingController _dateSelectedStart = TextEditingController();
-  final TextEditingController _dateSelectedFinished = TextEditingController();
-  final TextEditingController _workerDescription = TextEditingController();
-
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   late AddWorkExperienceCubit _addWorkExperienceCubit;
 
   @override
@@ -29,30 +30,47 @@ class _WorkExperienceState extends State<WorkExperience> {
 
   @override
   void dispose() {
-    _position;
-    _companyName;
-    _currentlyWork;
-    _dateSelectedStart;
-    _dateSelectedFinished;
-    _workerDescription;
+    _skillExperience;
+    _name;
+    _stillWorking;
+    _startWork;
+    _endWork;
+    _description;
     _addWorkExperienceCubit.close();
     super.dispose();
   }
 
-  Image iconCurrentlyWork() {
+  Image iconStillWorking() {
     if (_isWorking) {
-      _currentlyWork.text = "Tidak";
+      _stillWorking.text = "Tidak";
       return Image.asset("assets/icons/toggle-off.png");
     } else {
-      _currentlyWork.text = "Ya";
+      _stillWorking.text = "Ya";
       return Image.asset("assets/icons/toggle-on.png");
     }
   }
 
-  void currentlyWorkOnClick() {
+  void stillWorkingOnClick() {
     setState(() {
       _isWorking = !_isWorking;
     });
+  }
+
+  Future<void> selectDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1970),
+      lastDate: DateTime(2100),
+    );
+
+    if (pickedDate != null && pickedDate != _selectedDate) {
+      setState(() {
+        _selectedDate = pickedDate;
+        String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
+        _startWork.text = dateFormat;
+      });
+    }
   }
 
   @override
@@ -64,8 +82,11 @@ class _WorkExperienceState extends State<WorkExperience> {
           backgroundColor: const Color(0xffFFFFFF),
           centerTitle: true,
           elevation: 0.5,
-          leading: const Icon(Icons.arrow_back_ios_rounded,
-              color: Color(0xff333333)),
+          leading: IconButton(
+            onPressed: () => context.go('/profileblank'),
+            icon: const Icon(Icons.arrow_back_ios_rounded, color: Color(0xff333333)
+            ),
+          ),
           title: const Text('Pengalaman Kerja'),
           titleTextStyle: const TextStyle(
               fontFamily: 'inter_semibold',
@@ -76,10 +97,13 @@ class _WorkExperienceState extends State<WorkExperience> {
         body: SingleChildScrollView(
           child: BlocConsumer<AddWorkExperienceCubit, AddWorkExperienceState>(
             listener: (context, addWorkExperienceState) {
-              if (addWorkExperienceState is AddWorkExperienceIsSuccess) {
-                context.goNamed(Routes.profileblankPage);
+              if (addWorkExperienceState is AddWorkExperienceIsLoading) {
+                const CircularProgressIndicator(color: Colors.red);
               } else if (addWorkExperienceState is AddWorkExperienceIsFailed) {
+                Commons().showSnackbarError(context, 'Input Work Experience Failed');
                 print("Input Work Experience Failed");
+              } else if (addWorkExperienceState is AddWorkExperienceIsSuccess) {
+                context.goNamed(Routes.profileblankPage);
               }
             },
             builder: (context, addWorkExperienceState) {
@@ -92,17 +116,21 @@ class _WorkExperienceState extends State<WorkExperience> {
                         margin: const EdgeInsets.only(top: 16),
                         alignment: Alignment.topLeft,
                         padding: const EdgeInsets.only(left: 16),
-                        child: const Text("Jabatan",
-                            style: TextStyle(
-                                fontFamily: "inter_semibold",
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xff333333)))),
+                        child: const Text(
+                          "Jabatan",
+                          style: TextStyle(
+                            fontFamily: "inter_semibold",
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff333333)
+                            )
+                          )
+                        ),
                     Container(
                         margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                         child: TextFormField(
                           cursorColor: const Color(0xff333333),
-                          controller: _position,
+                          controller: _skillExperience,
                           style: const TextStyle(
                               fontFamily: "inter_regular",
                               fontSize: 12,
@@ -134,7 +162,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                         margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                         child: TextFormField(
                           cursorColor: const Color(0xff333333),
-                          controller: _companyName,
+                          controller: _name,
                           style: const TextStyle(
                             fontFamily: "inter_regular",
                             fontSize: 12,
@@ -170,7 +198,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                         margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                         child: TextFormField(
                             cursorColor: const Color(0xff333333),
-                            controller: _currentlyWork,
+                            controller: _stillWorking,
                             readOnly: true,
                             style: const TextStyle(
                               fontFamily: "inter_regular",
@@ -180,8 +208,8 @@ class _WorkExperienceState extends State<WorkExperience> {
                             ),
                             decoration: InputDecoration(
                               suffixIcon: IconButton(
-                                  onPressed: currentlyWorkOnClick,
-                                  icon: iconCurrentlyWork()),
+                                  onPressed: stillWorkingOnClick,
+                                  icon: iconStillWorking()),
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                 color: Color(0xff666666),
@@ -206,7 +234,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                         margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                         child: TextFormField(
                             cursorColor: const Color(0xff333333),
-                            controller: _dateSelectedStart,
+                            controller: _startWork,
                             readOnly: true,
                             style: const TextStyle(
                               fontFamily: "inter_regular",
@@ -217,21 +245,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                             decoration: InputDecoration(
                               hintText: "DD/MM/YYYY",
                               suffixIcon: IconButton(
-                                  onPressed: () async {
-                                    DateTime? pickedDate = await showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(1945),
-                                        lastDate: DateTime(2100));
-                                    if (pickedDate != null) {
-                                      String dateFormat =
-                                          DateFormat("dd/MM/yyyy")
-                                              .format(pickedDate);
-                                      _dateSelectedStart.text = dateFormat;
-                                    }
+                                  onPressed: () {
+                                    selectDate(context);
                                   },
-                                  icon:
-                                      Image.asset("assets/icons/calendar.png")),
+                                icon: Image.asset("assets/icons/calendar.png")
+                              ),
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                 color: Color(0xff666666),
@@ -259,7 +277,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                             margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                             child: TextFormField(
                               cursorColor: const Color(0xff333333),
-                              controller: _dateSelectedFinished,
+                              controller: _endWork,
                               readOnly: true,
                               style: const TextStyle(
                                 fontFamily: "inter_regular",
@@ -275,13 +293,13 @@ class _WorkExperienceState extends State<WorkExperience> {
                                           await showDatePicker(
                                               context: context,
                                               initialDate: DateTime.now(),
-                                              firstDate: DateTime(1945),
+                                              firstDate: DateTime(1970),
                                               lastDate: DateTime(2100));
                                       if (pickedDate != null) {
                                         String dateFormat =
                                             DateFormat("dd/MM/yyyy")
                                                 .format(pickedDate);
-                                        _dateSelectedFinished.text = dateFormat;
+                                        _endWork.text = dateFormat;
                                       }
                                     },
                                     icon: Image.asset(
@@ -313,7 +331,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                         margin: const EdgeInsets.fromLTRB(16, 3, 15, 0),
                         child: TextFormField(
                           cursorColor: const Color(0xff333333),
-                          controller: _workerDescription,
+                          controller: _description,
                           maxLines: 7,
                           minLines: 5,
                           style: const TextStyle(
@@ -338,24 +356,24 @@ class _WorkExperienceState extends State<WorkExperience> {
                           keyboardType: TextInputType.multiline,
                         )),
                     Container(
-                        margin: const EdgeInsets.fromLTRB(16, 100, 15, 21),
+                        margin: const EdgeInsets.fromLTRB(16, 130, 15, 21),
+                        height: 60,
+                        width: 375,
                         child: ElevatedButton(
                             onPressed: () {
-                              BlocProvider.of<AddWorkExperienceCubit>(context)
-                                  .addWorkExperience(AddWorkExperienceRequest(
-                                      skillExperience: _position.text,
-                                      name: _companyName.text,
-                                      stillWorking: _currentlyWork.text,
-                                      startWork: _dateSelectedStart.text,
-                                      endWork: _dateSelectedFinished.text,
-                                      description: _workerDescription.text
-                                    )
-                                  );
+                              BlocProvider.of<AddWorkExperienceCubit>(context).addWorkExperience(
+                                AddWorkExperienceRequest(
+                                    _skillExperience.text,
+                                    _name.text,
+                                    _stillWorking.text,
+                                    _startWork.text,
+                                    _endWork.text,
+                                    _description.text,
+                                )
+                              );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xffEA232A),
-                              padding:
-                                  const EdgeInsets.fromLTRB(146, 12, 146, 12),
+                              backgroundColor: const Color(0xffEA232A)
                             ),
                             child: const Text(
                               "Simpan",

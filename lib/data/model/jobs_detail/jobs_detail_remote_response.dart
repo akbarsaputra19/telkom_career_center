@@ -4,10 +4,6 @@ import 'package:telkom_career/domain/model/jobs_detail/jobs_detail_data.dart';
 
 part 'jobs_detail_remote_response.g.dart';
 
-abstract class JobsDetailRemoteResponseMapper {
-  JobsDetailData toJobsDetailData();
-}
-
 @JsonSerializable()
 class JobsDetailRemoteResponse implements JobsDetailRemoteResponseMapper {
   String? id;
@@ -47,7 +43,23 @@ class JobsDetailRemoteResponse implements JobsDetailRemoteResponseMapper {
   @override
   JobsDetailData toJobsDetailData() {
     return JobsDetailData(
-      id: id, position: position, company: company, logo: logo, address: address, status: status, sendDate: sendDate, qualification: qualification, jobDescription: jobDescription, category: category, description: description, createdAt: createdAt, updatedAt: updatedAt
+      id ?? "",
+      position ?? "",
+      company ?? "",
+      logo ?? "",
+      address ?? "",
+      status!,
+      sendDate ?? "",
+      qualification ?? "",
+      jobDescription ?? "",
+      category ?? "",
+      description ?? "",
+      createdAt ?? "",
+      updatedAt ?? ""
     );
   }
+}
+
+abstract class JobsDetailRemoteResponseMapper {
+  JobsDetailData toJobsDetailData();
 }

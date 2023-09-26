@@ -1,19 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class JobsDetailData {
-  String? id;
-  String? position;
-  String? company;
-  String? logo;
-  String? address;
-  bool? status;
-  String? sendDate;
-  String? qualification;
-  String? jobDescription;
-  String? category;
-  String? description;
-  String? createdAt;
-  String? updatedAt;
-  JobsDetailData({
+  String id;
+  String position;
+  String company;
+  String logo;
+  String address;
+  bool status;
+  String sendDate;
+  String qualification;
+  String jobDescription;
+  String category;
+  String description;
+  String createdAt;
+  String updatedAt;
+  JobsDetailData(
     this.id,
     this.position,
     this.company,
@@ -27,5 +27,5 @@ class JobsDetailData {
     this.description,
     this.createdAt,
     this.updatedAt,
-  });
+  );
 }

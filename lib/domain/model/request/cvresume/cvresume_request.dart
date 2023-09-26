@@ -2,8 +2,8 @@
 import 'dart:io';
 
 class CvresumeRequest {
-  File cvResumeFile;
-  CvresumeRequest({
-    required this.cvResumeFile,
-  });
+  File? cvResumeFile;
+  CvresumeRequest(
+    this.cvResumeFile,
+  );
 }

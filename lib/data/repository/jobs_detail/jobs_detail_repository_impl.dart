@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:telkom_career/base/base_remote_response.dart';
+import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/model/jobs_detail/jobs_detail_remote_response.dart';
 import 'package:telkom_career/data/service/remote/jobs_detail/jobs_detail_remote_service.dart';
@@ -15,9 +15,9 @@ class JobsDetailRepositoryImpl implements JobsDetailRepository {
   Future<ResultEntity<JobsDetailData>> fetchJobsDetail(AuthenticationHeaderRequest header, String id) async {
     try {
       final response = await jobsDetailRemoteService.fetchJobsDetail(header, id);
-      if (response.statusCode == 200 || response.statusCode == 201){
-        BaseRemoteResponseCC<JobsDetailRemoteResponse> baseResponseeObject = 
-          BaseRemoteResponseCC<JobsDetailRemoteResponse>.fromJson(
+      if (response.statusCode == 200) {
+        BaseRemoteResponseMoc<JobsDetailRemoteResponse> baseResponseeObject = 
+          BaseRemoteResponseMoc<JobsDetailRemoteResponse>.fromJson(
             jsonDecode(response.body), (json) => JobsDetailRemoteResponse.fromJson(json as Map<String, dynamic>));
 
             if (baseResponseeObject.status == null) {

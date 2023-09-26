@@ -3,7 +3,11 @@
 part of '../pages.dart';
 
 class ProfileEditProfile extends StatefulWidget {
-  const ProfileEditProfile({super.key});
+  final ProfileEditProfileData userData;
+  const ProfileEditProfile({
+    Key? key,
+    required this.userData,
+  }) : super(key: key);
 
   @override
   State<ProfileEditProfile> createState() => _ProfileEditProfileState();
@@ -11,7 +15,7 @@ class ProfileEditProfile extends StatefulWidget {
 
 class _ProfileEditProfileState extends State<ProfileEditProfile> {
   bool isAgree = false;
-  late ProfileEditProfileCubit _profileEditProfileCubit;
+  //late ProfileEditProfileCubit _profileEditProfileCubit;
 
   final TextEditingController _name = TextEditingController();
   final TextEditingController _title = TextEditingController();
@@ -21,17 +25,22 @@ class _ProfileEditProfileState extends State<ProfileEditProfile> {
 
   @override
   void initState() {
+    _name.text = widget.userData.name;
+    _title.text = widget.userData.skill;
+    _nomorPonsel.text = widget.userData.phoneNumber;
     super.initState();
-    _profileEditProfileCubit =
-        ProfileEditProfileCubit(ProfileEditProfileRepositoryImpl());
+    //_profileEditProfileCubit = ProfileEditProfileCubit(ProfileEditProfileRepositoryImpl());
   }
 
   @override
   void dispose() {
-    _name;
-    _title;
-    _nomorPonsel;
-    _profileEditProfileCubit.close();
+    _name.text = widget.userData.name;
+    _title.text = widget.userData.skill;
+    _nomorPonsel.text = widget.userData.phoneNumber;
+    // _name;
+    // _title;
+    // _nomorPonsel;
+    //_profileEditProfileCubit.close();
     super.dispose();
   }
 

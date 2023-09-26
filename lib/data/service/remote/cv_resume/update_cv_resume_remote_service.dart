@@ -6,12 +6,12 @@ import 'package:telkom_career/domain/model/request/cvresume/cvresume_request.dar
 class UpdateCvResumeRemoteService {
   Client client = Client();
   Future<Response> updateCvResume(CvresumeRequest request, AuthenticationHeaderRequest header) async {
-    final url = Uri.https(
+    final url = Uri.http(
       BaseConfig.BASE_DOMAIN_MOC,
       BaseConfig.BASE_PATH_MOC + BaseConfig.UPDATE_CV_RESUME
     );
     var multipartRequest = MultipartRequest('POST', url);
-    var pathFile = MultipartFile.fromBytes("file", request.cvResumeFile.readAsBytesSync());
+    var pathFile = MultipartFile.fromBytes("file", request.cvResumeFile!.readAsBytesSync());
     multipartRequest.files.add(pathFile);
     multipartRequest.headers.addAll(header.toHeader());
 

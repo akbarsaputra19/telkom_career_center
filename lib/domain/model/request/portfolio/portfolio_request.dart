@@ -2,8 +2,8 @@
 import 'dart:io';
 
 class PortfolioRequest {
-  File portfolioFile;
-  PortfolioRequest({
-    required this.portfolioFile,
-  });
+  File? portfolioFile;
+  PortfolioRequest(
+   this.portfolioFile,
+  );
 }

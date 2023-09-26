@@ -20,6 +20,7 @@ class Routes {
 
 //pekerjaan
   static var jobscreenPage = "jobscreen";
+  static var detailjobsPage = "detailjobs";
 
 //company
   static var companyscreenPage = "companyscreen";
@@ -35,11 +36,10 @@ class Routes {
   static var profileEditProfilePage = "profileEditProfile";
   static var profileinputabilityPage = "profileinputability";
   static var profileinputlanguagePage = "profileinputlanguage";
-  static var workexperience = "experince";
-
-  // akbar
+  static var profileworkexperience = "profileinputexperience";
   static var profileinputportofolioPage = "profileinputportofolio";
-  static var profileinputEducation = "inputeducation";
+  static var profileinputEducation = "profileinputeducation";
+  static var profileinputcvResume = "profileinputcvresume";
 
 // Search
   static var searchscreenPage = "searchscreen";

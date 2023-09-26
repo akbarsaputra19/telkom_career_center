@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:telkom_career/base/base_remote_response.dart';
+import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/service/remote/education_remote_service.dart';
 import 'package:telkom_career/domain/model/request/education/update_education_request.dart';
@@ -14,21 +14,21 @@ class UpdateEducationRepositoryImpl implements EducationRepository {
     try {
       final response = await addEducationRemoteService.addEducation(request);
       if (response.statusCode == 200) {
-        BaseRemoteResponseCC baseResponseeObject = BaseRemoteResponseCC.fromJson(
+        BaseRemoteResponseMoc baseResponseAddEducation = BaseRemoteResponseMoc.fromJson(
           jsonDecode(response.body), (json) => null
         );
-      if (baseResponseeObject.status == null) {
-        return ResultError(message: baseResponseeObject.status!.message);
-      } else if (baseResponseeObject.status?.code != 0) {
-        return ResultError(message: baseResponseeObject.status!.message);
+      if (baseResponseAddEducation.status == null) {
+        return ResultError(message: baseResponseAddEducation.status!.message);
+      } else if (baseResponseAddEducation.status?.code != 0) {
+        return ResultError(message: baseResponseAddEducation.status!.message);
       } else {
-        return ResultSuccess(baseResponseeObject.data);
+        return ResultSuccess(baseResponseAddEducation.data);
       }
     } else {
-      return ResultError(message: "");
+      return ResultError(message: response.body);
     }
-    } catch (error) {
-      return ResultError(message: "");
+    } catch (e) {
+      return ResultError(message: e.toString());
     }
   }
 }

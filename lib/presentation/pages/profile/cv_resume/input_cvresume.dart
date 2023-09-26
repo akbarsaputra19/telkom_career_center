@@ -47,7 +47,11 @@ class _InputResumeState extends State<InputResume> {
         ),
           centerTitle: true,
           backgroundColor: const Color(0xffFFFFFF),
-          leading: const Icon(Icons.arrow_back_ios_rounded, color: Color(0xff333333)),
+          leading: IconButton(
+            onPressed: () => context.go('/profileblank'),
+            icon: const Icon(Icons.arrow_back_ios_rounded, color: Color(0xff333333)
+            ),
+          ),
           elevation: 0.05
       ),
       body: BlocConsumer<UpdateCvResumeCubit, UpdateCvResumeState>(
@@ -208,7 +212,7 @@ class _InputResumeState extends State<InputResume> {
                   thickness: 2
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 16, left: 16, bottom: 16, right: 8),
+                  margin: const EdgeInsets.only(top: 5, left: 16, bottom: 5, right: 10),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -306,12 +310,12 @@ class _InputResumeState extends State<InputResume> {
                   thickness: 2
                 ),
                 Container(
-                  margin: const EdgeInsets.fromLTRB(16, 190, 15, 21),
+                  margin: const EdgeInsets.fromLTRB(16, 170, 15, 21),
                   child: ElevatedButton(
                     onPressed: () {
                       BlocProvider.of<UpdateCvResumeCubit>(context).updateCvResume(
                         CvresumeRequest(
-                          cvResumeFile: file!
+                          file!
                         )
                       );
                     },

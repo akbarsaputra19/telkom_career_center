@@ -2,8 +2,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:telkom_career/base/result_entity.dart';
+import 'package:telkom_career/data/utilities/commons.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
-
 import 'package:telkom_career/domain/model/data/profile/profile_data.dart';
 import 'package:telkom_career/domain/repository/profile/profile_data_repository.dart';
 
@@ -15,13 +15,20 @@ class ProfileDataCubit extends Cubit<ProfileDataState> {
     this.repository,
   ) : super(ProfileDataInitial());
 
-  Future<void> fetchProfileData(AuthenticationHeaderRequest header) async {
+  Future<void> fetchProfileData() async {
     emit(ProfileDataIsLoading());
-    final response = await repository.fetchProfileData(header);
+    final token = await Commons().getUid();
+    print("TOKEN idProfileData = ${token}");
+
+    final response =
+        await repository.fetchProfileData(AuthenticationHeaderRequest(token));
     if (response is ResultSuccess) {
       emit(ProfileDataIsSuccess((response as ResultSuccess).data));
+      //final token = await Commons().getUid;
+      print("Data Profile Succes");
     } else {
-      emit(ProfileDataIsError(message: (response as ResultError).message));
+      emit(ProfileDataIsError(message: response.toString()));
+      print((response as ResultError).message);
     }
   }
 }

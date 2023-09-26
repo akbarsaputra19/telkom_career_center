@@ -2,6 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:telkom_career/base/result_entity.dart';
+import 'package:telkom_career/data/utilities/commons.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
 
 import 'package:telkom_career/domain/model/jobs_detail/jobs_detail_data.dart';
@@ -13,14 +14,14 @@ class JobsDetailCubit extends Cubit<JobsDetailState> {
   final JobsDetailRepository repository;
   JobsDetailCubit(
     this.repository,
-  ) : super(JobsDetailInitial());
+  ) : super(const JobsDetailState());
 
-  Future<void> fetchJobsDetail(AuthenticationHeaderRequest header, String id) async {
+  Future<void> onSubmitDetailJobs(String id) async {
+    final token = await Commons().getUid();
     emit(JobsDetailIsLoading());
-    final response = await repository.fetchJobsDetail(header, id);
+    final response = await repository.fetchJobsDetail(AuthenticationHeaderRequest(token), id);
     if(response is ResultSuccess) {
-      emit(JobsDetailIsSuccess(
-        data: (response as ResultSuccess).data));
+      emit(JobsDetailIsSuccess());
     } else {
       emit(JobsDetailIsFailed(
         message: (response as ResultError).message));

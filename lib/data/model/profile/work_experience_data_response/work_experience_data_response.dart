@@ -2,24 +2,29 @@
 //import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:telkom_career/data/model/profile/data_range_remote_response/date_range_remote_response.dart';
+import 'package:telkom_career/domain/model/data/profile/date_range_data.dart';
 import 'package:telkom_career/domain/model/data/profile/work_experience_data.dart';
 
 part 'work_experience_data_response.g.dart';
 
 @JsonSerializable()
 class WorkExperienceDataResponse implements WorkExperienceDataResponseMapper {
-  String? skillExperience;
-  String? name;
-  String? startWork;
-  String? endWork;
-  String? description;
+  String? Id;
+  String? SkillExperience;
+  String? Name;
+  bool? StillWorking;
+  DateRangeRemoteResponse? DateRange;
+  String? Description;
   WorkExperienceDataResponse({
-    this.skillExperience,
-    this.name,
-    this.startWork,
-    this.endWork,
-    this.description,
+    this.Id,
+    this.SkillExperience,
+    this.Name,
+    this.StillWorking,
+    this.DateRange,
+    this.Description,
   });
+
 
   factory WorkExperienceDataResponse.fromJson(Map<String, dynamic> json) =>
       _$WorkExperienceDataResponseFromJson(json);
@@ -29,11 +34,16 @@ class WorkExperienceDataResponse implements WorkExperienceDataResponseMapper {
   @override
   WorkExperienceData toWorkExperienceData() {
     return WorkExperienceData(
-      name: name,
-      description: description,
-      skillExperience: skillExperience,
-      startWork: startWork,
-      endWork: endWork,
+      Id ?? "",
+      SkillExperience ?? "",
+      Name ?? "",
+      StillWorking!,
+      DateRange?.toDateRangeData() ??
+          DateRangeData(
+            Start: "",
+            End: "",
+          ),
+      Description ?? ""
     );
   }
 }

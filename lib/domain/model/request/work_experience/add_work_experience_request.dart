@@ -5,20 +5,20 @@ part 'add_work_experience_request.g.dart';
 
 @JsonSerializable()
 class AddWorkExperienceRequest extends AuthenticationHeaderRequest{
-  String? skillExperience;
-  String? name;
-  String? stillWorking;
-  String? startWork;
-  String? endWork;
-  String? description;
-  AddWorkExperienceRequest({
+  String skillExperience;
+  String name;
+  String stillWorking;
+  String startWork;
+  String endWork;
+  String description;
+  AddWorkExperienceRequest(
     this.skillExperience,
     this.name,
     this.stillWorking,
     this.startWork,
     this.endWork,
     this.description
-  }) : super('');
+  ) : super('');
 
   factory AddWorkExperienceRequest.fromJson(Map<String, dynamic> json) =>
     _$AddWorkExperienceRequestFromJson(json);

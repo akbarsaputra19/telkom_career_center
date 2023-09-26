@@ -244,11 +244,11 @@ class _LoginPageMocState extends State<LoginPageMoc> {
                                 //validation() ?
 
                                 () {
-                              // BlocProvider.of<LoginmocCubit>(context)
-                              //     .onSubmitLogin(LoginRequest(
-                              //   _userNameController.text,
-                              //   _passwordController.text,
-                              // ));
+                              BlocProvider.of<LoginmocCubit>(context)
+                                  .onSubmitLogin(LoginRequest(
+                                _userNameController.text,
+                                _passwordController.text,
+                              ));
                             },
                             // : () {
                             //   Commons().showSnackbarError(

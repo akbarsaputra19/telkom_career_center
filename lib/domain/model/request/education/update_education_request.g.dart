@@ -9,13 +9,13 @@ part of 'update_education_request.dart';
 UpdateEducationRequest _$UpdateEducationRequestFromJson(
         Map<String, dynamic> json) =>
     UpdateEducationRequest(
-      level: json['level'] as String?,
-      name: json['name'] as String?,
-      major: json['major'] as String?,
-      stillEducation: json['stillEducation'] as String?,
-      startEducation: json['startEducation'] as String?,
-      endEducation: json['endEducation'] as String?,
-      description: json['description'] as String?,
+      json['level'] as String,
+      json['name'] as String,
+      json['major'] as String,
+      json['stillEducation'] as String,
+      json['startEducation'] as String,
+      json['endEducation'] as String,
+      json['description'] as String,
     )..accesToken = json['accesToken'] as String;
 
 Map<String, dynamic> _$UpdateEducationRequestToJson(

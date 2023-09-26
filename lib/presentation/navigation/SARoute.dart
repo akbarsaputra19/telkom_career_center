@@ -2,9 +2,10 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:telkom_career/domain/base/authentication_header_request.dart';
+import 'package:telkom_career/domain/model/data/profile/profile_edit_profile_data.dart';
 import 'package:telkom_career/presentation/pages/company/cubit/company_data_cubit.dart';
 import 'package:telkom_career/presentation/pages/jobs/cubit/list_job_cubit.dart';
+import 'package:telkom_career/presentation/pages/jobs_detail/cubit/jobs_detail_cubit.dart';
 import 'package:telkom_career/presentation/pages/profile/cubit/profile_data_cubit.dart';
 import 'package:telkom_career/presentation/pages/search/cubit/lists_company_data_cubit.dart';
 import '../pages/pages.dart';
@@ -77,6 +78,15 @@ final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
       return const JobsScreen();
     },
   ),
+  GoRoute(
+        path: "/detailjobs",
+        name: Routes.detailjobsPage,
+        builder: (context, state) {
+          String id = state.extra as String;
+          BlocProvider.of<JobsDetailCubit>(context).onSubmitDetailJobs(id);
+          return const DetailPekerjaan();
+    },
+  ),
 
   // COMPANY //
 
@@ -91,8 +101,7 @@ final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
     path: "/profileblank",
     name: Routes.profileblankPage,
     builder: (context, state) {
-      BlocProvider.of<ProfileDataCubit>(context)
-          .fetchProfileData(AuthenticationHeaderRequest(""));
+      BlocProvider.of<ProfileDataCubit>(context).fetchProfileData();
       return const ProfileBlank();
     },
   ),
@@ -107,7 +116,10 @@ final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
   GoRoute(
       path: "/profileEditProfile",
       name: Routes.profileEditProfilePage,
-      builder: (context, state) => const ProfileEditProfile()),
+      builder: (context, state) {
+        final userData = state.extra as ProfileEditProfileData;
+        return ProfileEditProfile(userData: userData);
+      }),
   GoRoute(
       path: "/profileinputability",
       name: Routes.profileinputabilityPage,
@@ -116,16 +128,22 @@ final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
       path: "/profileinputlanguage",
       name: Routes.profileinputlanguagePage,
       builder: (context, state) => const ProfileInputLanguage()),
-
-  //akbar
   GoRoute(
-      path: "/experience",
-      name: Routes.workexperience,
+      path: "/profileinputexperience",
+      name: Routes.profileworkexperience,
       builder: (context, state) => const WorkExperience()),
   GoRoute(
-      path: "/inputeducation",
+      path: "/profileinputeducation",
       name: Routes.profileinputEducation,
       builder: (context, state) => const InputEducation()),
+  GoRoute(
+      path: "/profileinputcvresume",
+      name: Routes.profileinputcvResume,
+      builder: (context, state) => const InputResume()),
+  GoRoute(
+      path: "/profileinputportofolio",
+      name: Routes.profileinputportofolioPage,
+      builder: (context, state) => const InputPortfolio()),
 
   // SEARCH //
   GoRoute(

@@ -6,14 +6,14 @@ part 'update_education_request.g.dart';
 
 @JsonSerializable()
 class UpdateEducationRequest extends AuthenticationHeaderRequest{
-  String? level;
-  String? name;
-  String? major;
-  String? stillEducation;
-  String? startEducation;
-  String? endEducation;
-  String? description;
-  UpdateEducationRequest({
+  String level;
+  String name;
+  String major;
+  String stillEducation;
+  String startEducation;
+  String endEducation;
+  String description;
+  UpdateEducationRequest(
     this.level,
     this.name,
     this.major,
@@ -21,7 +21,7 @@ class UpdateEducationRequest extends AuthenticationHeaderRequest{
     this.startEducation,
     this.endEducation,
     this.description,
-  }) : super('');
+  ) : super('');
 
   factory UpdateEducationRequest.fromJson(Map<String, dynamic> json) =>
     _$UpdateEducationRequestFromJson(json);

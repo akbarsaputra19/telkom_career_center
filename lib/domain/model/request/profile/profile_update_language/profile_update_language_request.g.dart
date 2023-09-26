@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'language_data_reponse.dart';
+part of 'profile_update_language_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LanguageDataResponse _$LanguageDataResponseFromJson(
+ProfileUpdateLanguageRequest _$ProfileUpdateLanguageRequestFromJson(
         Map<String, dynamic> json) =>
-    LanguageDataResponse(
-      language: json['language'] as String?,
+    ProfileUpdateLanguageRequest(
+      (json['language'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$LanguageDataResponseToJson(
-        LanguageDataResponse instance) =>
+Map<String, dynamic> _$ProfileUpdateLanguageRequestToJson(
+        ProfileUpdateLanguageRequest instance) =>
     <String, dynamic>{
       'language': instance.language,
     };

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:telkom_career/base/base_remote_response.dart';
+import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/service/remote/portfolio/update_portfolio_remote_service.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
@@ -14,8 +14,8 @@ class UpdatePortfolioRepositoryImpl implements UpdatePortfolioRepository {
   Future<ResultEntity> updatePortfolio(PortfolioRequest request, AuthenticationHeaderRequest header) async {
     try{
       final response = await portfolioRemoteService.updatePortfolio(request, header);
-      if (response.statusCode == 200 || response.statusCode == 201){
-        BaseRemoteResponseCC baseResponsePortfolio = BaseRemoteResponseCC.fromJson(
+      if (response.statusCode == 200) {
+        BaseRemoteResponseMoc baseResponsePortfolio = BaseRemoteResponseMoc.fromJson(
           jsonDecode(response.body), (json) => null
         );
       if (baseResponsePortfolio.status == null) {
