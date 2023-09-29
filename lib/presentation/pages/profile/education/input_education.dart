@@ -16,7 +16,7 @@ class _InputEducationState extends State<InputEducation> {
   final TextEditingController _endEducation = TextEditingController();
   final TextEditingController _description = TextEditingController();
 
-  bool _isEducation = false;
+  bool _isEducation = true;
 
   late EducationCubit _educationCubit;
 
@@ -418,7 +418,7 @@ class _InputEducationState extends State<InputEducation> {
                               firstDate: DateTime(1980),
                               lastDate: DateTime(2100)
                               );
-                              if (pickedDate != null) {
+                              if (pickedDate != null && pickedDate != DateTime.now()) {
                                 String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
                                 _startEducation.text = dateFormat;
                               }
@@ -478,7 +478,7 @@ class _InputEducationState extends State<InputEducation> {
                                     firstDate: DateTime(1970),
                                     lastDate: DateTime(2100)
                                   );
-                                  if (pickedDate != null) {
+                                  if (pickedDate != null && pickedDate != DateTime.now()) {
                                   String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
                                   _endEducation.text = dateFormat;
                                   }
@@ -556,7 +556,7 @@ class _InputEducationState extends State<InputEducation> {
                               _level.text,
                               _name.text,
                               _major.text,
-                              _stillEducation.text,
+                              _isEducation,
                               _startEducation.text,
                               _endEducation.text,
                               _description.text

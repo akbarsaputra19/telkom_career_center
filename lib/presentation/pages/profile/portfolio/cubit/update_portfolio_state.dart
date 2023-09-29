@@ -11,16 +11,16 @@ abstract class UpdatePortfolioState extends Equatable {
 class UpdatePortfolioInitial extends UpdatePortfolioState {}
 
 class UpdatePortfolioIsSuccess extends UpdatePortfolioState {
-  String? message;
+  String message;
   UpdatePortfolioIsSuccess({
-    this.message,
+    required this.message,
   });
 }
 
 class UpdatePortfolioIsFailed extends UpdatePortfolioState {
-  String? message;
+  String message;
   UpdatePortfolioIsFailed({
-    this.message,
+    required this.message,
   });
 }
 

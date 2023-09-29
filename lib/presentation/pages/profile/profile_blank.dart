@@ -17,22 +17,8 @@ class _ProfileBlankState extends State<ProfileBlank> {
   File? photo;
   String urlPhoto = '';
   late ProfileDataCubit _profileDataCubit;
-  bool _isLoading = false;
 
-  Future<void> _uploadImage() async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    await BlocProvider.of<UpdatePhotoCubit>(context)
-        .fetchProfileUpdatePhoto(photo!);
-
-    setState(() {
-      _isLoading = false;
-    });
-  }
-
-  Future<void> ChoiceImageCamera() async {
+  Future<void> ChoiceImageCamera(context) async {
     final picker = ImagePicker();
     final pickedImage = await picker.pickImage(source: ImageSource.camera);
 
@@ -64,6 +50,7 @@ class _ProfileBlankState extends State<ProfileBlank> {
   void initState() {
     urlPhoto.text;
     _profileDataCubit = ProfileDataCubit(ProfileDataRepositoryImpl());
+    BlocProvider.of<ProfileDataCubit>(context).fetchProfileData();
     super.initState();
   }
 
@@ -112,7 +99,7 @@ class _ProfileBlankState extends State<ProfileBlank> {
                           InkWell(
                             onTap: () {
                               setState(() {
-                                ChoiceImageCamera();
+                                ChoiceImageCamera(context);
                                 //context.goNamed(Routes.profileinputabilityPage);
                               });
                               //ChoiceImage(ImageSource.camera);
@@ -155,11 +142,11 @@ class _ProfileBlankState extends State<ProfileBlank> {
                           Image.asset("assets/icons/trash.png"),
                           const SizedBox(width: 12),
                           InkWell(
-                            onTap: () {
-                              // ChoiceImage(ImageSource.camera);
+                            onTap: () async {
+                              await BlocProvider.of<UpdatePhotoCubit>(context).fetchProfileUpdatePhoto(photo!);
                             },
                             child: const Text(
-                              "Hapus foto",
+                              "Simpan foto",
                               style: TextStyle(
                                   fontFamily: "inter_bold",
                                   fontSize: 16,
@@ -826,9 +813,24 @@ class _ProfileBlankState extends State<ProfileBlank> {
     );
   }
 
-  Widget buildWorkExperience(List<WorkExperienceData>? profileWorkExperience) {
+    Widget buildWorkExperience(List<WorkExperienceData>? profileWorkExperience) {
     if (profileWorkExperience == null || profileWorkExperience.isEmpty) {
-      return const Text("Belum ada data dimasukkan");
+      return Container(
+        margin: const EdgeInsets.only(
+          left: 16,
+          bottom: 8,
+        ),
+        alignment: Alignment.centerLeft,
+        child: const Text(
+          "Belum ada data dimasukkan",
+          style: TextStyle(
+            fontFamily: "inter_semibold",
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: Color(0xff666666),
+          ),
+        ),
+      );
     } else {
       return ListView.builder(
         shrinkWrap: true,
@@ -838,7 +840,7 @@ class _ProfileBlankState extends State<ProfileBlank> {
 
           return Container(
             alignment: Alignment.topLeft,
-            margin: const EdgeInsets.only(left: 16),
+            margin: const EdgeInsets.only(left: 16, bottom: 8),
             child: Text(
               workExperience.Name,
               style: const TextStyle(
@@ -856,7 +858,22 @@ class _ProfileBlankState extends State<ProfileBlank> {
 
   Widget buildEducationWidget(List<EducationData>? profileEducations) {
     if (profileEducations == null || profileEducations.isEmpty) {
-      return const Text("Belum ada data dimasukkan");
+      return Container(
+        margin: const EdgeInsets.only(
+          left: 16,
+          bottom: 8,
+        ),
+        alignment: Alignment.centerLeft,
+        child: const Text(
+          "Belum ada data dimasukkan",
+          style: TextStyle(
+            fontFamily: "inter_semibold",
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: Color(0xff666666),
+          ),
+        ),
+      );
     } else {
       return ListView.builder(
         shrinkWrap: true,
@@ -866,7 +883,7 @@ class _ProfileBlankState extends State<ProfileBlank> {
 
           return Container(
             alignment: Alignment.topLeft,
-            margin: const EdgeInsets.only(left: 16),
+            margin: const EdgeInsets.only(left: 16, bottom: 8),
             child: Text(
               education.Name!,
               style: const TextStyle(
@@ -882,5 +899,49 @@ class _ProfileBlankState extends State<ProfileBlank> {
     }
   }
 
-  // Widget buildCvResume (Profile)
+  Widget buildAbilityWidget(List<AbilityData>? profileAbility) {
+    if (profileAbility == null || profileAbility.isEmpty) {
+      return Container(
+        margin: const EdgeInsets.only(
+          left: 16,
+          bottom: 8,
+        ),
+        alignment: Alignment.centerLeft,
+        child: const Text(
+          "Belum ada data dimasukkan",
+          style: TextStyle(
+            fontFamily: "inter_semibold",
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: Color(0xff666666),
+          ),
+        ),
+      );
+    } else {
+      return ListView.builder(
+        shrinkWrap: true,
+        itemCount: profileAbility.length,
+        itemBuilder: (context, index) {
+          final ability = profileAbility[index];
+
+          return Container(
+            alignment: Alignment.topLeft,
+            margin: const EdgeInsets.only(
+              left: 16,
+              bottom: 8,
+            ),
+            child: Text(
+              ability.ability!.join(", "),
+              style: const TextStyle(
+                fontFamily: "inter_semibold",
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: Color(0xff666666),
+              ),
+            ),
+          );
+        },
+      );
+    }
+  }
 }

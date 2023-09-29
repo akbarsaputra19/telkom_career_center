@@ -10,7 +10,7 @@ class InputPortfolio extends StatefulWidget {
 class _InputPortfolioState extends State<InputPortfolio> {
   String fileName = '';
   String pathFile = '';
-  File? file;
+  File? _fileportfolio;
 
   late UpdatePortfolioCubit _updatePortfolioCubit;
 
@@ -20,7 +20,7 @@ class _InputPortfolioState extends State<InputPortfolio> {
     super.initState();
     fileName;
     pathFile;
-    file;
+    _fileportfolio;
   }
 
   @override
@@ -29,7 +29,7 @@ class _InputPortfolioState extends State<InputPortfolio> {
     super.dispose();
     fileName;
     pathFile;
-    file;
+    _fileportfolio;
   }
 
   void showMoreUpload() {
@@ -58,14 +58,10 @@ class _InputPortfolioState extends State<InputPortfolio> {
                       .pickFiles(allowedExtensions: ["pdf"], type: FileType.custom);
 
                     if (result != null) {
-                      File file = File(result.files.single.path!);
-                      PlatformFile platformFile = result.files.first;
                       setState(() {
-                        pathFile = platformFile.path!;
-                        fileName = "${platformFile.name}.${platformFile.extension}";
+                        File? file = File(result.files.single.path ?? 'file.pdf');
+                        _fileportfolio = file;
                       });
-                    } else {
-                      //User canceled the picker
                     }
                   }, 
                   child: const Text(
@@ -323,7 +319,7 @@ class _InputPortfolioState extends State<InputPortfolio> {
                     onPressed: () {
                       BlocProvider.of<UpdatePortfolioCubit>(context).updatePortfolio(
                         PortfolioRequest(
-                          file!
+                          _fileportfolio
                         )
                       );
                     },

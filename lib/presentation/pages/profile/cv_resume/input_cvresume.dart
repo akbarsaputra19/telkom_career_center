@@ -10,7 +10,7 @@ class InputResume extends StatefulWidget {
 class _InputResumeState extends State<InputResume> {
   String fileName = '';
   String pathFile = '';
-  File? file;
+  File? _filecv;
 
   late UpdateCvResumeCubit _updateCvResumeCubit;
 
@@ -20,7 +20,7 @@ class _InputResumeState extends State<InputResume> {
     super.initState();
     fileName;
     pathFile;
-    file;
+    _filecv;
   }
 
   @override
@@ -29,7 +29,7 @@ class _InputResumeState extends State<InputResume> {
     super.dispose();
     fileName;
     pathFile;
-    file;
+    _filecv;
   }
 
   @override
@@ -135,14 +135,10 @@ class _InputResumeState extends State<InputResume> {
                                   .pickFiles(allowedExtensions: ["pdf"], type: FileType.custom);
       
                                 if (result != null) {
-                                  File file = File(result.files.single.path!);
-                                  PlatformFile platformFile = result.files.first;
                                   setState(() {
-                                    pathFile = platformFile.path!;
-                                    fileName = "${platformFile.name}.${platformFile.extension}";
+                                    File? file = File(result.files.single.path ?? 'file.pdf');
+                                    _filecv = file;
                                   });
-                                } else {
-      
                                 }
                               },
                               child: const Text(
@@ -315,7 +311,7 @@ class _InputResumeState extends State<InputResume> {
                     onPressed: () {
                       BlocProvider.of<UpdateCvResumeCubit>(context).updateCvResume(
                         CvresumeRequest(
-                          file!
+                          _filecv
                         )
                       );
                     },

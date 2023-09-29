@@ -16,11 +16,11 @@ import 'package:telkom_career/data/repository/jobs_detail/jobs_detail_repository
 import 'package:telkom_career/data/repository/portfolio/update_portfolio_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_change_password_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_data_repository_impl.dart';
-import 'package:telkom_career/data/repository/profile/profile_edit_profile_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_update_ability_repository_impl.dart';
 import 'package:telkom_career/data/repository/profile/profile_update_language_repository_impl.dart';
 import 'package:telkom_career/data/repository/register/register_repository_impl.dart';
 import 'package:telkom_career/data/repository/work_experience/add_work_experience_repository_impl.dart';
+import 'package:telkom_career/domain/model/data/profile/ability_data.dart';
 import 'package:telkom_career/domain/model/data/profile/education_data.dart';
 import 'package:telkom_career/domain/model/data/profile/profile_edit_profile_data.dart';
 import 'package:telkom_career/domain/model/data/profile/work_experience_data.dart';

@@ -16,13 +16,13 @@ class UpdateCvResumeCubit extends Cubit<UpdateCvResumeState> {
   ) : super(UpdateCvResumeInitial());
 
   Future<void> updateCvResume(CvresumeRequest request) async {
-    final token = await Commons().getUid();
     emit(UpdateCvResumeIsLoading());
-    final response = await repository.updateCvResume(request, AuthenticationHeaderRequest(token));
+    final token = await Commons().getUid();
+    final response = await repository.updateCvResume(AuthenticationHeadersRequestUpload(token), request);
     if (response is ResultSuccess) {
       emit(UpdateCvResumeIsSuccess(message: "Update Cv/Resume berhasil"));
     } else {
-      emit(UpdateCvResumeIsFailed(message: (response as ResultError).message));
+      emit(UpdateCvResumeIsFailed(message: "Update Cv/Resume Failed"));
     }
   }
 }

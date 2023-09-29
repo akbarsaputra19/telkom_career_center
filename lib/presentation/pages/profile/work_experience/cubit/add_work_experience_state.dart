@@ -13,14 +13,14 @@ class AddWorkExperienceIsLoading extends AddWorkExperienceState {}
 
 class AddWorkExperienceIsSuccess extends AddWorkExperienceState {
   String? message;
-  AddWorkExperienceIsSuccess({
+  AddWorkExperienceIsSuccess(
     this.message
-  });
+  );
 }
 
 class AddWorkExperienceIsFailed extends AddWorkExperienceState {
   String? message;
-  AddWorkExperienceIsFailed({
+  AddWorkExperienceIsFailed(
     this.message
-  });
+  );
 }

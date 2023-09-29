@@ -11,9 +11,9 @@ class UpdatePortfolioRepositoryImpl implements UpdatePortfolioRepository {
   final portfolioRemoteService = UpdatePortfolioRemoteService();
 
   @override
-  Future<ResultEntity> updatePortfolio(PortfolioRequest request, AuthenticationHeaderRequest header) async {
+  Future<ResultEntity> updatePortfolio(AuthenticationHeadersRequestUpload header, PortfolioRequest request) async {
     try{
-      final response = await portfolioRemoteService.updatePortfolio(request, header);
+      final response = await portfolioRemoteService.updatePortfolio(header, request);
       if (response.statusCode == 200) {
         BaseRemoteResponseMoc baseResponsePortfolio = BaseRemoteResponseMoc.fromJson(
           jsonDecode(response.body), (json) => null
@@ -26,10 +26,10 @@ class UpdatePortfolioRepositoryImpl implements UpdatePortfolioRepository {
         return ResultSuccess(baseResponsePortfolio.data);
       }
       } else {
-        return ResultError(message: "");
+        return ResultError(message: response.body);
       }
-    } catch (err) {
-      return ResultError(message: "");
+    } catch (e) {
+      return ResultError(message: e.toString());
     }
   }
 }

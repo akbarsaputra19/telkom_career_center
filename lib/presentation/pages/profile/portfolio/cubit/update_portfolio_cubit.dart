@@ -16,13 +16,13 @@ class UpdatePortfolioCubit extends Cubit<UpdatePortfolioState> {
   ) : super(UpdatePortfolioInitial());
 
   Future<void> updatePortfolio(PortfolioRequest request) async {
-    final accestoken = await Commons().getUid();
     emit(UpdatePortfolioIsLoading());
-    final response = await repository.updatePortfolio(request, AuthenticationHeaderRequest(accestoken));
+    final token = await Commons().getUid();
+    final response = await repository.updatePortfolio(AuthenticationHeadersRequestUpload(token), request);
     if (response is ResultSuccess) {
       emit(UpdatePortfolioIsSuccess(message: "Update Portfolio berhasil"));
     } else {
-      emit(UpdatePortfolioIsFailed(message: (response as ResultError).message));
+      emit(UpdatePortfolioIsFailed(message: "Update Portfolio Failed"));
     }
   }
 }

@@ -11,16 +11,16 @@ class EducationInitial extends EducationState {}
 
 class EducationIsSuccess extends EducationState {
   String? message;
-  EducationIsSuccess({
+  EducationIsSuccess(
     this.message
-  });
+  );
 }
 
 class EducationIsFailed extends EducationState {
   String? message;
-  EducationIsFailed({
+  EducationIsFailed(
     this.message
-  });
+  );
 }
 
 class EducationIsLoading extends EducationState {}

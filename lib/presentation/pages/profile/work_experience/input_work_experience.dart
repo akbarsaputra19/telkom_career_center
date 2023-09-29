@@ -17,7 +17,7 @@ class _WorkExperienceState extends State<WorkExperience> {
 
   DateTime? _selectedDate;
 
-  bool _isWorking = false;
+  bool _isWorking = true;
 
   late AddWorkExperienceCubit _addWorkExperienceCubit;
 
@@ -295,7 +295,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                                               initialDate: DateTime.now(),
                                               firstDate: DateTime(1970),
                                               lastDate: DateTime(2100));
-                                      if (pickedDate != null) {
+                                      if (pickedDate != null && pickedDate != DateTime.now()) {
                                         String dateFormat =
                                             DateFormat("dd/MM/yyyy")
                                                 .format(pickedDate);
@@ -365,7 +365,7 @@ class _WorkExperienceState extends State<WorkExperience> {
                                 AddWorkExperienceRequest(
                                     _skillExperience.text,
                                     _name.text,
-                                    _stillWorking.text,
+                                    _isWorking,
                                     _startWork.text,
                                     _endWork.text,
                                     _description.text,

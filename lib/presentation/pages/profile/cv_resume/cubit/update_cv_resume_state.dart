@@ -11,16 +11,16 @@ abstract class UpdateCvResumeState extends Equatable {
 class UpdateCvResumeInitial extends UpdateCvResumeState {}
 
 class UpdateCvResumeIsSuccess extends UpdateCvResumeState {
-  String? message;
+  String message;
   UpdateCvResumeIsSuccess({
-    this.message,
+    required this.message,
   });
 }
 
 class UpdateCvResumeIsFailed extends UpdateCvResumeState {
-  String? message;
+  String message;
   UpdateCvResumeIsFailed({
-    this.message,
+    required this.message,
   });
 }
 

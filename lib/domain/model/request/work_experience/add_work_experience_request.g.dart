@@ -9,18 +9,17 @@ part of 'add_work_experience_request.dart';
 AddWorkExperienceRequest _$AddWorkExperienceRequestFromJson(
         Map<String, dynamic> json) =>
     AddWorkExperienceRequest(
-      json['skillExperience'] as String,
-      json['name'] as String,
-      json['stillWorking'] as String,
-      json['startWork'] as String,
-      json['endWork'] as String,
-      json['description'] as String,
-    )..accesToken = json['accesToken'] as String;
+      json['skillExperience'] as String?,
+      json['name'] as String?,
+      json['stillWorking'] as bool?,
+      json['startWork'] as String?,
+      json['endWork'] as String?,
+      json['description'] as String?,
+    );
 
 Map<String, dynamic> _$AddWorkExperienceRequestToJson(
         AddWorkExperienceRequest instance) =>
     <String, dynamic>{
-      'accesToken': instance.accesToken,
       'skillExperience': instance.skillExperience,
       'name': instance.name,
       'stillWorking': instance.stillWorking,

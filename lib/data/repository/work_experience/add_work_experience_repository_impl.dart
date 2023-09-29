@@ -2,17 +2,18 @@ import 'dart:convert';
 
 import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
-import 'package:telkom_career/data/service/remote/work_experience_remote_service.dart';
+import 'package:telkom_career/data/service/remote/profile/work_experience_remote_service.dart';
+import 'package:telkom_career/domain/base/authentication_header_request.dart';
 import 'package:telkom_career/domain/model/request/work_experience/add_work_experience_request.dart';
 import 'package:telkom_career/domain/repository/work_experience/add_work_experience_repository.dart';
 
 class AddWorkExperienceRepositoryImpl implements AddWorkExperienceRepository {
-  final addWorkExperienceRemoteService = AddWorkExperienceRemoteService();
+  final addWorkExperienceRepositoryImpl = AddWorkExperienceRemoteService();
 
   @override
-  Future<ResultEntity> addWorkExperience(AddWorkExperienceRequest request) async {
+  Future<ResultEntity> addWorkExperience(AuthenticationHeaderRequest header, AddWorkExperienceRequest request) async {
     try {
-      final response = await addWorkExperienceRemoteService.addWorkExperience(request);
+      final response = await addWorkExperienceRepositoryImpl.addWorkExperience(header, request);
       if (response.statusCode == 200) {
         BaseRemoteResponseMoc baseResponseAddWorkExperience = BaseRemoteResponseMoc.fromJson(
           jsonDecode(response.body), (json) => null

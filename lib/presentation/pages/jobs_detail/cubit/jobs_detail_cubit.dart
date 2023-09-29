@@ -21,10 +21,13 @@ class JobsDetailCubit extends Cubit<JobsDetailState> {
     emit(JobsDetailIsLoading());
     final response = await repository.fetchJobsDetail(AuthenticationHeaderRequest(token), id);
     if(response is ResultSuccess) {
-      emit(JobsDetailIsSuccess());
+      emit(JobsDetailIsSuccess(
+        data: (response as ResultSuccess).data
+      ));
     } else {
       emit(JobsDetailIsFailed(
-        message: (response as ResultError).message));
+        message: (response as ResultError).message
+      ));
     }
   }
 }

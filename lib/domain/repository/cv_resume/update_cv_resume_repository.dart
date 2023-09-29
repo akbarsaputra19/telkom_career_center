@@ -3,5 +3,5 @@ import 'package:telkom_career/domain/base/authentication_header_request.dart';
 import 'package:telkom_career/domain/model/request/cvresume/cvresume_request.dart';
 
 abstract class UpdateCvResumeRepository {
-  Future<ResultEntity> updateCvResume(CvresumeRequest request, AuthenticationHeaderRequest header);
+  Future<ResultEntity> updateCvResume(AuthenticationHeadersRequestUpload header, CvresumeRequest request);
 }

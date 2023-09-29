@@ -11,9 +11,9 @@ class UpdateCvResumeRepositoryImpl implements UpdateCvResumeRepository {
   final cvResumeRemoteService = UpdateCvResumeRemoteService();
 
   @override
-  Future<ResultEntity> updateCvResume(CvresumeRequest request, AuthenticationHeaderRequest header) async {
+  Future<ResultEntity> updateCvResume(AuthenticationHeadersRequestUpload header, CvresumeRequest request) async {
     try{
-      final response = await cvResumeRemoteService.updateCvResume(request, header);
+      final response = await cvResumeRemoteService.updateCvResume(header, request);
       if (response.statusCode == 200) {
         BaseRemoteResponseMoc baseResponseCvResume = BaseRemoteResponseMoc.fromJson(
           jsonDecode(response.body), (json) => null
@@ -26,10 +26,10 @@ class UpdateCvResumeRepositoryImpl implements UpdateCvResumeRepository {
         return ResultSuccess(baseResponseCvResume.data);
       }
       } else {
-        return ResultError(message: "");
+        return ResultError(message: response.body);
       }
     } catch (err) {
-      return ResultError(message: "");
+      return ResultError(message: err.toString());
     }
   }
 
