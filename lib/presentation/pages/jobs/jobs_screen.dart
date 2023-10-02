@@ -214,7 +214,7 @@ class _JobsScreenState extends State<JobsScreen> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    context.go("/searchscreen");
+                                    context.go("/detailjobs");
                                   },
                                   child: Card(
                                     elevation: 0,

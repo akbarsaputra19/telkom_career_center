@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/service/remote/profile/profile_update_photo_remote_service.dart';
@@ -14,10 +13,17 @@ class ProfileUpdatePhotoRepositoryImpl implements ProfileUpdatePhotoRepository {
 
   @override
   Future<ResultEntity> fetchProfileUpdatePhoto(
-      AuthenticationHeadersRequestUpload header, File image) async {
+    AuthenticationHeadersRequestUpload header,
+    File? photo,
+    // String id,
+  ) async {
     try {
       final response = await profileUpdatePhotoRepositoryImpl
-          .updateProfileUpdatePhotoRemoteService(header, image);
+          .updateProfileUpdatePhotoRemoteService(
+        header,
+        photo,
+        //   id,
+      );
 
       print("STATUS UPLOAD IMAGE: ${response.statusCode}");
       print("BODY UPLOAD IMAGE: ${response.body}");
@@ -26,7 +32,10 @@ class ProfileUpdatePhotoRepositoryImpl implements ProfileUpdatePhotoRepository {
       if (response.statusCode == 200) {
         BaseRemoteResponseMoc baseResponseUpdatePhoto =
             BaseRemoteResponseMoc.fromJson(
-                jsonDecode(response.body), (json) => null);
+          jsonDecode(response.body),
+          (json) => null,
+        );
+
         if (baseResponseUpdatePhoto.status == null) {
           return ResultError();
         } else if (baseResponseUpdatePhoto.status?.code != 0) {
@@ -35,7 +44,7 @@ class ProfileUpdatePhotoRepositoryImpl implements ProfileUpdatePhotoRepository {
           return ResultSuccess(baseResponseUpdatePhoto.data);
         }
       } else {
-        print("INI ERROR UPDATE PHOTO : ${response.body}");
+        print('INI ERROR UPDATE PHOTO : ${response.body}');
         return ResultError(message: response.body);
       }
     } catch (e) {

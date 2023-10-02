@@ -14,7 +14,7 @@ class ProfileUpdatePhotoRemoteService {
   Client client = Client();
   Future<Response> updateProfileUpdatePhotoRemoteService(
     AuthenticationHeadersRequestUpload header,
-    File image,
+    File? photo,
     //String id
   ) async {
     final url = Uri.http(
@@ -27,12 +27,10 @@ class ProfileUpdatePhotoRemoteService {
 
     var multipartRequest = MultipartRequest('POST', url);
 
-    var imageFile = await MultipartFile.fromPath(
-      'file',
-      image.path,
-    );
-
-    multipartRequest.files.add(imageFile);
+    multipartRequest.files.add(await MultipartFile.fromPath(
+        "photo", photo!.path,
+        filename: photo.path.split("/").last,
+        contentType: MediaType("image", 'JPG')));
     multipartRequest.headers.addAll(header.toHeader());
 
     var streamedResponse = await multipartRequest.send();
@@ -41,43 +39,3 @@ class ProfileUpdatePhotoRemoteService {
     return response;
   }
 }
-
-// if (request.photo != null) {
-    //   print("photo not Null");
-    // } else {
-    //   print("Null");
-    // }
-
-  // var body = HashMap<String, String>();
-
-    // if (request.photo != null) {
-    //   var imageFile = request.photo!;
-    //   var stream = http.ByteStream(imageFile.openRead());
-    //   var length = await imageFile.length();
-
-    //   var multipartFile = http.MultipartFile(
-    //     'file',
-    //     stream,
-    //     length,
-    //     filename: imageFile.path.split("/").last,
-    //     contentType: MediaType('image', 'jpeg'),
-    //     // Sesuaikan tipe konten dengan jenis gambar yang dikirimkan
-    //   );
-
-    //  multipartRequest.files.add(multipartFile);
-    //}
-
-
-// var token = header.accesToken;
-    // print("ini header change foto profile : $token");
-    // multipartRequest.headers.addAll({
-    //   'Authorization': 'Bearer $token',
-    //   'Content-Type': 'application/json',
-    // });
-
-    // multipartRequest.fields.addAll(body);
-    // // multipartRequest.headers.addAll(header.toHeader());
-    // var streamedResponse = await multipartRequest.send();
-    // var response = await Response.fromStream(streamedResponse);
-
-    //return response;

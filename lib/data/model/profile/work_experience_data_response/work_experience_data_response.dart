@@ -40,8 +40,8 @@ class WorkExperienceDataResponse implements WorkExperienceDataResponseMapper {
       StillWorking!,
       DateRange?.toDateRangeData() ??
           DateRangeData(
-            Start: "",
-            End: "",
+            "",
+            "",
           ),
       Description ?? ""
     );

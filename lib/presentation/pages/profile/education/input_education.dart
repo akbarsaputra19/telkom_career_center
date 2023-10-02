@@ -39,6 +39,28 @@ class _InputEducationState extends State<InputEducation> {
     super.dispose();
   }
 
+  DateTime selectedDateTime = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDateTime,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null && picked != selectedDateTime) {
+      setState(() {
+        selectedDateTime = picked;
+        selectedDateTime = DateTime(
+          selectedDateTime.year,
+          selectedDateTime.month,
+          selectedDateTime.day,
+        );
+      });
+    }
+  }
+
   Image iconStillEducation() {
     if (_isEducation) {
       _stillEducation.text = "Tidak";
@@ -409,19 +431,11 @@ class _InputEducationState extends State<InputEducation> {
                         color: Color(0xff333333),
                       ),
                       decoration: InputDecoration(
-                        hintText: "DD/MM/YYYY",
+                        hintText: "yyyy/MM/dd",
                         suffixIcon: IconButton(
-                          onPressed: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(1980),
-                              lastDate: DateTime(2100)
-                              );
-                              if (pickedDate != null && pickedDate != DateTime.now()) {
-                                String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
-                                _startEducation.text = dateFormat;
-                              }
+                          onPressed: () {
+                            _selectDate(context);
+                            _startEducation.text = DateFormat('yyyy-MM-dd').format(selectedDateTime);
                             },
                           icon: Image.asset("assets/icons/calendar.png")
                         ),
@@ -469,19 +483,11 @@ class _InputEducationState extends State<InputEducation> {
                               color: Color(0xff333333),
                             ),
                             decoration: InputDecoration(
-                              hintText: "DD/MM/YYYY",
+                              hintText: "yyyy/MM/dd",
                               suffixIcon: IconButton(
-                                onPressed: () async {
-                                  DateTime? pickedDate = await showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime(1970),
-                                    lastDate: DateTime(2100)
-                                  );
-                                  if (pickedDate != null && pickedDate != DateTime.now()) {
-                                  String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
-                                  _endEducation.text = dateFormat;
-                                  }
+                                onPressed: () {
+                                  _selectDate(context);
+                                  _endEducation.text = DateFormat('yyyy-MM-dd').format(selectedDateTime);
                                 },
                                 icon: Image.asset("assets/icons/calendar.png")
                               ),

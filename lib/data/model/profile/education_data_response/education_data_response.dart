@@ -41,8 +41,8 @@ class EducationDataResponse implements EducationDataResponseMapper {
       SkillEducation: SkillEducation,
       DateRange: DateRange?.toDateRangeData() ??
           DateRangeData(
-            Start: "",
-            End: "",
+            "",
+            "",
           ),
       Description: Description
     );

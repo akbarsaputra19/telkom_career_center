@@ -15,8 +15,6 @@ class _WorkExperienceState extends State<WorkExperience> {
   final TextEditingController _endWork = TextEditingController();
   final TextEditingController _description = TextEditingController();
 
-  DateTime? _selectedDate;
-
   bool _isWorking = true;
 
   late AddWorkExperienceCubit _addWorkExperienceCubit;
@@ -56,19 +54,24 @@ class _WorkExperienceState extends State<WorkExperience> {
     });
   }
 
-  Future<void> selectDate(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
+  DateTime selectedDateTime = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1970),
-      lastDate: DateTime(2100),
+      initialDate: selectedDateTime,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
     );
 
-    if (pickedDate != null && pickedDate != _selectedDate) {
+    if (picked != null && picked != selectedDateTime) {
       setState(() {
-        _selectedDate = pickedDate;
-        String dateFormat = DateFormat("dd/MM/yyyy").format(pickedDate);
-        _startWork.text = dateFormat;
+        selectedDateTime = picked;
+        selectedDateTime = DateTime(
+          selectedDateTime.year,
+          selectedDateTime.month,
+          selectedDateTime.day,
+        );
       });
     }
   }
@@ -243,10 +246,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                               color: Color(0xff333333),
                             ),
                             decoration: InputDecoration(
-                              hintText: "DD/MM/YYYY",
+                              hintText: "yyyy/MM/dd",
                               suffixIcon: IconButton(
                                   onPressed: () {
-                                    selectDate(context);
+                                    _selectDate(context);
+                                    _startWork.text = DateFormat('yyyy-MM-dd').format(selectedDateTime);
                                   },
                                 icon: Image.asset("assets/icons/calendar.png")
                               ),
@@ -286,21 +290,11 @@ class _WorkExperienceState extends State<WorkExperience> {
                                 color: Color(0xff333333),
                               ),
                               decoration: InputDecoration(
-                                hintText: "DD/MM/YYYY",
+                                hintText: "yyyy/MM/dd",
                                 suffixIcon: IconButton(
-                                    onPressed: () async {
-                                      DateTime? pickedDate =
-                                          await showDatePicker(
-                                              context: context,
-                                              initialDate: DateTime.now(),
-                                              firstDate: DateTime(1970),
-                                              lastDate: DateTime(2100));
-                                      if (pickedDate != null && pickedDate != DateTime.now()) {
-                                        String dateFormat =
-                                            DateFormat("dd/MM/yyyy")
-                                                .format(pickedDate);
-                                        _endWork.text = dateFormat;
-                                      }
+                                    onPressed: () {
+                                      _selectDate(context);
+                                      _endWork.text = DateFormat('yyyy-MM-dd').format(selectedDateTime);
                                     },
                                     icon: Image.asset(
                                         "assets/icons/calendar.png")),
