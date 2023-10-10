@@ -12,13 +12,14 @@ class JobResponse implements JobResponseMapper {
   String? position;
   String? company;
   String? logo;
+  String? urlLogo;
   String? address;
   String? createDate;
-
   JobResponse({
     this.position,
     this.company,
     this.logo,
+    this.urlLogo,
     this.address,
     this.createDate,
   });
@@ -30,7 +31,13 @@ class JobResponse implements JobResponseMapper {
 
   @override
   JobsData toJobsData() {
-    return JobsData(position ?? "", company ?? "", logo ?? "", address ?? "",
-        createDate ?? "");
+    return JobsData(
+      position ?? "",
+      company ?? "",
+      logo ?? "",
+      urlLogo ?? "",
+      address ?? "",
+      createDate ?? ""
+    );
   }
 }

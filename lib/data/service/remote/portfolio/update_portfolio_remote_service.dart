@@ -2,7 +2,7 @@ import 'package:http/http.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:telkom_career/base/base_config.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
-import 'package:telkom_career/domain/model/request/portfolio/portfolio_request.dart';
+import 'package:telkom_career/domain/model/request/profile/portfolio/portfolio_request.dart';
 
 class UpdatePortfolioRemoteService {
   Client client = Client();

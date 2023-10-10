@@ -4,7 +4,7 @@ import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/service/remote/profile/work_experience_remote_service.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
-import 'package:telkom_career/domain/model/request/work_experience/add_work_experience_request.dart';
+import 'package:telkom_career/domain/model/request/profile/work_experience/add_work_experience_request.dart';
 import 'package:telkom_career/domain/repository/work_experience/add_work_experience_repository.dart';
 
 class AddWorkExperienceRepositoryImpl implements AddWorkExperienceRepository {

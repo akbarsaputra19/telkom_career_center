@@ -4,7 +4,7 @@ import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/service/remote/portfolio/update_portfolio_remote_service.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
-import 'package:telkom_career/domain/model/request/portfolio/portfolio_request.dart';
+import 'package:telkom_career/domain/model/request/profile/portfolio/portfolio_request.dart';
 import 'package:telkom_career/domain/repository/portfolio/update_portfolio_repository.dart';
 
 class UpdatePortfolioRepositoryImpl implements UpdatePortfolioRepository {

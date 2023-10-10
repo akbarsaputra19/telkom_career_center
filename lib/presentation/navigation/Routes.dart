@@ -17,10 +17,12 @@ class Routes {
 
 //home
   static var homescreenPage = "homescreen";
+  static var mainNavigationPage = "mainNavigation";
 
 //pekerjaan
   static var jobscreenPage = "jobscreen";
   static var detailjobsPage = "detailjobs";
+  static var applicationSentPage = "applicationsent";
 
 //company
   static var companyscreenPage = "companyscreen";

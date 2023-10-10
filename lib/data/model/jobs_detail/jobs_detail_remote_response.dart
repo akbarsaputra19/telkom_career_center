@@ -1,38 +1,40 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
-import 'package:telkom_career/domain/model/jobs_detail/jobs_detail_data.dart';
+import 'package:telkom_career/domain/model/data/jobs_detail/jobs_detail_data.dart';
 
 part 'jobs_detail_remote_response.g.dart';
 
 @JsonSerializable()
 class JobsDetailRemoteResponse implements JobsDetailRemoteResponseMapper {
   String? id;
+  String? companyId;
   String? position;
   String? company;
   String? logo;
+  String? urlLogo;
   String? address;
   bool? status;
-  String? sendDate;
+  String? applyDate;
   String? qualification;
   String? jobDescription;
-  String? category;
-  String? description;
   String? createdAt;
   String? updatedAt;
+  int? applicant;
   JobsDetailRemoteResponse({
     this.id,
+    this.companyId,
     this.position,
     this.company,
     this.logo,
+    this.urlLogo,
     this.address,
     this.status,
-    this.sendDate,
+    this.applyDate,
     this.qualification,
     this.jobDescription,
-    this.category,
-    this.description,
     this.createdAt,
     this.updatedAt,
+    this.applicant,
   });
 
   factory JobsDetailRemoteResponse.fromJson(Map<String, dynamic> json) =>
@@ -44,18 +46,19 @@ class JobsDetailRemoteResponse implements JobsDetailRemoteResponseMapper {
   JobsDetailData toJobsDetailData() {
     return JobsDetailData(
       id ?? "",
+      companyId ?? "",
       position ?? "",
       company ?? "",
       logo ?? "",
+      urlLogo ?? "",
       address ?? "",
       status!,
-      sendDate ?? "",
+      applyDate ?? "",
       qualification ?? "",
       jobDescription ?? "",
-      category ?? "",
-      description ?? "",
       createdAt ?? "",
-      updatedAt ?? ""
+      updatedAt ?? "",
+      applicant!
     );
   }
 }

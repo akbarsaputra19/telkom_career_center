@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/utilities/commons.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
-import 'package:telkom_career/domain/model/request/portfolio/portfolio_request.dart';
+import 'package:telkom_career/domain/model/request/profile/portfolio/portfolio_request.dart';
 import 'package:telkom_career/domain/repository/portfolio/update_portfolio_repository.dart';
 
 part 'update_portfolio_state.dart';

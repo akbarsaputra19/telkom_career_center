@@ -18,6 +18,7 @@ abstract class BaseConfig {
   static const String LISTS_JOBS = "/list-jobs";
   static const String BASE_COMPANY = "/company/";
   static const String JOBS_DETAIL = "/job-detail/";
+  static const String JOBS_APLICATION = "/job-aplication";
 
   // PROFILE
   static const String PROFILE_DATA = "/profile";

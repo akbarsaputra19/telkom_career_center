@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
 import 'package:telkom_career/domain/model/data/list_job/list_job_data.dart';
 
@@ -9,21 +10,27 @@ abstract class ListResponseMapper {
 
 @JsonSerializable()
 class ListResponse implements ListResponseMapper {
-  String? logo;
+  String? id;
+  String? companyId;
   String? position;
   String? company;
+  String? logo;
+  String? urlLogo;
   String? address;
-  String? createdAt;
   bool? status;
-  String? id;
+  String? createdAt;
+  int? applicant;
   ListResponse({
-    this.logo,
+    this.id,
+    this.companyId,
     this.position,
     this.company,
+    this.logo,
+    this.urlLogo,
     this.address,
-    this.createdAt,
     this.status,
-    this.id,
+    this.createdAt,
+    this.applicant,
   });
 
   factory ListResponse.fromJson(Map<String, dynamic> json) =>
@@ -34,13 +41,16 @@ class ListResponse implements ListResponseMapper {
   @override
   ListJobData toListJobData() {
     return ListJobData(
-      logo ?? "",
+      id ?? "",
+      companyId ?? "",
       position ?? "",
       company ?? "",
+      logo ?? "",
+      urlLogo ?? "",
       address ?? "",
-      createdAt ?? "",
-      id ?? "",
       status!,
+      createdAt ?? "",
+      applicant!
     );
   }
 }

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:telkom_career/base/base_config.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
-import 'package:telkom_career/domain/model/request/education/update_education_request.dart';
+import 'package:telkom_career/domain/model/request/profile/education/update_education_request.dart';
 
 class EducationRemoteService {
   Client client = Client();

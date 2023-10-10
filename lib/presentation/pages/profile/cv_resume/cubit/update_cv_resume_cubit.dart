@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/utilities/commons.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
-import 'package:telkom_career/domain/model/request/cvresume/cvresume_request.dart';
+import 'package:telkom_career/domain/model/request/profile/cvresume/cvresume_request.dart';
 import 'package:telkom_career/domain/repository/cv_resume/update_cv_resume_repository.dart';
 
 part 'update_cv_resume_state.dart';

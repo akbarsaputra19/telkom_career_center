@@ -10,6 +10,7 @@ JobResponse _$JobResponseFromJson(Map<String, dynamic> json) => JobResponse(
       position: json['position'] as String?,
       company: json['company'] as String?,
       logo: json['logo'] as String?,
+      urlLogo: json['urlLogo'] as String?,
       address: json['address'] as String?,
       createDate: json['createDate'] as String?,
     );
@@ -19,6 +20,7 @@ Map<String, dynamic> _$JobResponseToJson(JobResponse instance) =>
       'position': instance.position,
       'company': instance.company,
       'logo': instance.logo,
+      'urlLogo': instance.urlLogo,
       'address': instance.address,
       'createDate': instance.createDate,
     };

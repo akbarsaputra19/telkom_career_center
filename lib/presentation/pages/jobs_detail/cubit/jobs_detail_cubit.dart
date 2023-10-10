@@ -5,7 +5,7 @@ import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/utilities/commons.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
 
-import 'package:telkom_career/domain/model/jobs_detail/jobs_detail_data.dart';
+import 'package:telkom_career/domain/model/data/jobs_detail/jobs_detail_data.dart';
 import 'package:telkom_career/domain/repository/jobs_detail/jobs_detail_repository.dart';
 
 part 'jobs_detail_state.dart';

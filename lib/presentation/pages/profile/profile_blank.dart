@@ -13,7 +13,7 @@ class ProfileBlank extends StatefulWidget {
 }
 
 class _ProfileBlankState extends State<ProfileBlank> {
-  late int _bottomNavCurrentIndext = 0;
+  //late int _bottomNavCurrentIndext = 0;
   File? photo;
   String urlPhoto = '';
   late ProfileDataCubit _profileDataCubit;
@@ -57,7 +57,6 @@ class _ProfileBlankState extends State<ProfileBlank> {
   @override
   void dispose() {
     _profileDataCubit.close();
-    _bottomNavCurrentIndext;
     photo;
     urlPhoto;
     super.dispose();
@@ -230,26 +229,34 @@ class _ProfileBlankState extends State<ProfileBlank> {
                                 child: Column(
                                   children: [
                                     Container(
-                                      margin: const EdgeInsets.only(top: 6),
+                                      margin: const EdgeInsets.only(top: 5),
                                       child: InkWell(
                                         onTap: () {
                                           _showSelectPhotoOptions(context);
                                           setState(() {});
                                         },
-                                        child: data.urlPhoto != ''
-                                            ? CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                  profileDataState.data.urlPhoto!
+                                        child: Container(
+                                          margin: const EdgeInsets.only(top: 1),
+                                          height: 100,
+                                          width: 100,
+                                          child: CircleAvatar(
+                                            maxRadius: 50,
+                                            child: photo != null
+                                              ? CircleAvatar(
+                                                  maxRadius: 50,
+                                                  backgroundImage: Image.memory(
+                                                          photo!
+                                                              .readAsBytesSync())
+                                                      .image)
+                                              : CircleAvatar(
+                                                  maxRadius: 50,
+                                                  backgroundImage: NetworkImage(
+                                                    profileDataState
+                                                        .data.urlPhoto!,
                                                 ),
-                                                maxRadius: 50,
-                                              )
-                                            : const CircleAvatar(
-                                                //backgroundColor: Colors.grey,
-                                                maxRadius: 50,
-                                                backgroundImage: AssetImage(
-                                                    "assets/images/avatar.png"
-                                                )
                                               ),
+                                          ),
+                                        ),
                                         ),
                                     ),
                                     Container(
@@ -633,8 +640,11 @@ class _ProfileBlankState extends State<ProfileBlank> {
                                           margin:
                                               const EdgeInsets.only(right: 15),
                                           child: InkWell(
-                                            onTap: () => context
-                                                .go('/profileinputcvresume'),
+                                            onTap: () {
+                                              context.goNamed(
+                                                Routes.profileinputcvResume,
+                                              );
+                                            },
                                             child: Image.asset(
                                               'assets/icons/icon_edit.png',
                                               color: const Color(0xff999999),
@@ -700,8 +710,11 @@ class _ProfileBlankState extends State<ProfileBlank> {
                                           margin:
                                               const EdgeInsets.only(right: 15),
                                           child: InkWell(
-                                            onTap: () => context
-                                                .go('/profileinputportofolio'),
+                                            onTap: () {
+                                              context.goNamed(
+                                                Routes.profileinputportofolioPage,
+                                              );
+                                            },
                                             child: Image.asset(
                                               'assets/icons/icon_edit.png',
                                               color: const Color(0xff999999),
@@ -728,95 +741,6 @@ class _ProfileBlankState extends State<ProfileBlank> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedFontSize: 10,
-        unselectedFontSize: 10,
-        selectedItemColor: const Color(0xffEA232A),
-        unselectedItemColor: const Color(0xff999999),
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedLabelStyle: const TextStyle(
-          fontFamily: "inter_semibold",
-          fontSize: 10,
-          color: Color(0xffEA232A),
-        ),
-        unselectedLabelStyle: const TextStyle(
-          fontFamily: "inter_semibold",
-          fontSize: 10,
-          color: Color(0xff999999),
-        ),
-        onTap: (index) {
-          setState(() {
-            _bottomNavCurrentIndext = index;
-          });
-        },
-        currentIndex: _bottomNavCurrentIndext,
-        elevation: 0.05,
-        items: [
-          BottomNavigationBarItem(
-            icon: GestureDetector(
-              onTap: () => context.go('/homescreen', extra: 0),
-              child: Image.asset(
-                'assets/icons/beranda.png',
-                color: const Color(0xff999999),
-              ),
-            ),
-            activeIcon: Image.asset(
-              'assets/icons/beranda.png',
-              color: const Color(0xff999999),
-            ),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: GestureDetector(
-              onTap: () => context.go('/jobscreen', extra: 1),
-              child: Image.asset(
-                'assets/icons/pekerjaan.png',
-                color: const Color(0xff999999),
-              ),
-            ),
-            // activeIcon: Image.asset(
-            //   'assets/icons/pekerjaan.png',
-            //   color: const Color(0xffEA232A),
-            // ),
-            label: 'Pekerjaan',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/kegiatan.png',
-              color: const Color(0xff999999),
-            ),
-            // activeIcon: Image.asset(
-            //   'assets/icons/kegiatan.png',
-            //   color: const Color(0xffEA232A),
-            // ),
-            label: 'Kegiatan',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/notif.png',
-              color: const Color(0xff999999),
-            ),
-            // activeIcon: Image.asset(
-            //   'assets/icons/notif.png',
-            //   color: const Color(0xffEA232A),
-            // ),
-            label: 'Notifikasi',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/profil.png',
-              color: const Color(0xffEA232A),
-            ),
-            activeIcon: Image.asset(
-              'assets/icons/profil.png',
-              color: const Color(0xffEA232A),
-            ),
-            label: 'Profil',
-          ),
-        ],
       ),
     );
   }
@@ -853,7 +777,7 @@ class _ProfileBlankState extends State<ProfileBlank> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  workExperience.SkillExperience,
+                  "${workExperience.SkillExperience}",
                   style: const TextStyle(
                     fontFamily: "inter_semibold",
                     fontSize: 12,
@@ -862,7 +786,7 @@ class _ProfileBlankState extends State<ProfileBlank> {
                   ),
                 ),
                 Text(
-                  workExperience.Name,
+                  "${workExperience.Name}",
                   style: const TextStyle(
                     fontFamily: "inter_semibold",
                     fontSize: 12,
@@ -875,7 +799,7 @@ class _ProfileBlankState extends State<ProfileBlank> {
                     children: <TextSpan>[
                       TextSpan(
                         text:
-                          workExperience.DateRange.Start,
+                          "${workExperience.DateRange?.Start}",
                            style: const TextStyle(
                             fontSize: 12,
                             fontFamily: "inter_semibold",
@@ -884,7 +808,7 @@ class _ProfileBlankState extends State<ProfileBlank> {
                             ),
                           ),
                           TextSpan(
-                           text: " - ${workExperience.DateRange.End}",
+                           text: " - ${workExperience.DateRange?.End}",
                             style: const TextStyle(
                               fontSize: 12,
                               fontFamily: "inter_semibold",

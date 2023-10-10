@@ -4,7 +4,7 @@ import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/service/remote/profile/education_remote_service.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
-import 'package:telkom_career/domain/model/request/education/update_education_request.dart';
+import 'package:telkom_career/domain/model/request/profile/education/update_education_request.dart';
 import 'package:telkom_career/domain/repository/education/education_repository.dart';
 
 class UpdateEducationRepositoryImpl implements EducationRepository {

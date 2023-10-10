@@ -7,22 +7,28 @@ part of 'list_response.dart';
 // **************************************************************************
 
 ListResponse _$ListResponseFromJson(Map<String, dynamic> json) => ListResponse(
-      logo: json['logo'] as String?,
+      id: json['id'] as String?,
+      companyId: json['companyId'] as String?,
       position: json['position'] as String?,
       company: json['company'] as String?,
+      logo: json['logo'] as String?,
+      urlLogo: json['urlLogo'] as String?,
       address: json['address'] as String?,
-      createdAt: json['createdAt'] as String?,
       status: json['status'] as bool?,
-      id: json['id'] as String?,
+      createdAt: json['createdAt'] as String?,
+      applicant: json['applicant'] as int?,
     );
 
 Map<String, dynamic> _$ListResponseToJson(ListResponse instance) =>
     <String, dynamic>{
-      'logo': instance.logo,
+      'id': instance.id,
+      'companyId': instance.companyId,
       'position': instance.position,
       'company': instance.company,
+      'logo': instance.logo,
+      'urlLogo': instance.urlLogo,
       'address': instance.address,
-      'createdAt': instance.createdAt,
       'status': instance.status,
-      'id': instance.id,
+      'createdAt': instance.createdAt,
+      'applicant': instance.applicant,
     };

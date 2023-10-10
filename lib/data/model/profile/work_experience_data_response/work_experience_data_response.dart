@@ -34,16 +34,16 @@ class WorkExperienceDataResponse implements WorkExperienceDataResponseMapper {
   @override
   WorkExperienceData toWorkExperienceData() {
     return WorkExperienceData(
-      Id ?? "",
-      SkillExperience ?? "",
-      Name ?? "",
-      StillWorking!,
-      DateRange?.toDateRangeData() ??
+      Id: Id,
+      SkillExperience: SkillExperience,
+      Name: Name,
+      StillWorking: StillWorking,
+      DateRange: DateRange?.toDateRangeData() ??
           DateRangeData(
             "",
             "",
           ),
-      Description ?? ""
+      Description: Description
     );
   }
 }

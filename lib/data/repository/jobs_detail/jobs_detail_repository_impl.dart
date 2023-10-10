@@ -4,7 +4,7 @@ import 'package:telkom_career/base/login_moc/base_remote_response.dart';
 import 'package:telkom_career/base/result_entity.dart';
 import 'package:telkom_career/data/model/jobs_detail/jobs_detail_remote_response.dart';
 import 'package:telkom_career/data/service/remote/jobs_detail/jobs_detail_remote_service.dart';
-import 'package:telkom_career/domain/model/jobs_detail/jobs_detail_data.dart';
+import 'package:telkom_career/domain/model/data/jobs_detail/jobs_detail_data.dart';
 import 'package:telkom_career/domain/base/authentication_header_request.dart';
 import 'package:telkom_career/domain/repository/jobs_detail/jobs_detail_repository.dart';
 

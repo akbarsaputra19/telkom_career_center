@@ -3,6 +3,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:telkom_career/domain/model/data/profile/profile_edit_profile_data.dart';
+import 'package:telkom_career/presentation/navigation/main_navigation_view.dart';
 import 'package:telkom_career/presentation/pages/company/cubit/company_data_cubit.dart';
 import 'package:telkom_career/presentation/pages/jobs/cubit/list_job_cubit.dart';
 import 'package:telkom_career/presentation/pages/jobs_detail/cubit/jobs_detail_cubit.dart';
@@ -63,9 +64,16 @@ final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
     path: "/homescreen",
     name: Routes.homescreenPage,
     builder: (context, state) {
-      BlocProvider.of<ListJobCubit>(context).fetchListJob();
-      BlocProvider.of<ListsCompanyDataCubit>(context).fetchListsCompany();
       return const HomeScreen();
+    },
+  ),
+  GoRoute(
+    path: "/mainNavigationPage",
+    name: Routes.mainNavigationPage,
+    builder: (context, state) {
+      return const MainNavigationView(
+        indexScreen: 0,
+      );
     },
   ),
 
@@ -74,7 +82,6 @@ final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
     path: "/jobscreen",
     name: Routes.jobscreenPage,
     builder: (context, state) {
-      BlocProvider.of<ListJobCubit>(context).fetchListJob();
       return const JobsScreen();
     },
   ),
@@ -85,6 +92,13 @@ final GoRouter saRouter = GoRouter(initialLocation: "/loginmoc", routes: [
           String id = state.extra as String;
           BlocProvider.of<JobsDetailCubit>(context).onSubmitDetailJobs(id);
           return const DetailPekerjaan();
+    },
+  ),
+  GoRoute(
+    path: "/applicationsent",
+    name: Routes.applicationSentPage,
+    builder: (context, state) {
+      return const LamaranTerkirim();
     },
   ),
 

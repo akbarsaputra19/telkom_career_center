@@ -72,7 +72,7 @@ class _LamaranTerkirimState extends State<LamaranTerkirim> {
               Container(
                 margin: const EdgeInsets.fromLTRB(10, 20, 0, 20),
                 child: InkWell(
-                  onTap: () => context.go('/empty'),
+                  onTap: () => context.go('/jobscreen'),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const <Widget>[
